@@ -41,7 +41,7 @@ export function Contact() {
             >
               <span>{contact.ctaLabel}</span>
               <span className="contact__cta-arrow" aria-hidden="true">
-                ↗
+                ↗︎
               </span>
             </a>
           </div>

@@ -47,7 +47,7 @@ export function FeaturedProject() {
               <span className="featured__image-overlay">
                 <span className="featured__image-button">
                   Ver web
-                  <span aria-hidden="true">↗</span>
+                  <span aria-hidden="true">↗︎</span>
                 </span>
               </span>
             </a>
@@ -92,7 +92,7 @@ export function FeaturedProject() {
 
             <a href="#contacto" className="featured__cta">
               Quiero algo así para mi negocio
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true">↗︎</span>
             </a>
           </div>
         </div>

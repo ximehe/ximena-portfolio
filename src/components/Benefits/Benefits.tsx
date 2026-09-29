@@ -80,7 +80,7 @@ export function Benefits() {
                     className="benefits__item-arrow"
                     aria-hidden="true"
                   >
-                    {isOpen ? "↑" : "↗"}
+                    {isOpen ? "↑" : "↗︎"}
                   </span>
                 </button>
 

@@ -27,7 +27,7 @@ export function Footer() {
                 <li key={link.href}>
                   <a href={link.href}>
                     {link.label}
-                    <span aria-hidden="true">↗</span>
+                    <span aria-hidden="true">↗︎</span>
                   </a>
                 </li>
               ))}

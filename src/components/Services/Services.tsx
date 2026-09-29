@@ -82,7 +82,7 @@ export function Services() {
                 >
                   <span>Ver más</span>
                   <span className="services__arrow" aria-hidden="true">
-                    ↗
+                    ↗︎
                   </span>
                 </button>
               </li>
@@ -170,7 +170,7 @@ export function Services() {
               onClick={() => setActiveService(null)}
             >
               Quiero este servicio
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true">↗︎</span>
             </a>
           </div>
         </div>
