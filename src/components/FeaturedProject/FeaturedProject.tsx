@@ -12,7 +12,12 @@ export function FeaturedProject() {
           <p className="eyebrow" data-reveal>
             {featuredProject.eyebrow}
           </p>
-          <h2 className="featured__title" data-reveal style={{ transitionDelay: "60ms" }}>
+
+          <h2
+            className="featured__title"
+            data-reveal
+            style={{ transitionDelay: "60ms" }}
+          >
             {featuredProject.name.map((line) => (
               <span key={line} className="featured__title-line">
                 {line}
@@ -22,35 +27,73 @@ export function FeaturedProject() {
         </div>
 
         <div className="featured__grid">
-          <div
+         <div
             className="featured__image"
             data-reveal
             style={{ transitionDelay: "140ms" }}
           >
-            {featuredProject.imageSrc ? (
-              <img src={featuredProject.imageSrc} alt={featuredProject.imageAlt} />
-            ) : (
-              <div className="featured__image-placeholder">
-                <span>Captura del proyecto</span>
-                <span className="featured__image-placeholder-note">
-                  Se reemplaza por la imagen real
+            <a
+              href={featuredProject.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="featured__image-link"
+              aria-label="Ver web de Magnolias Cotillón"
+            >
+              <img
+                src={featuredProject.imageSrc}
+                alt={featuredProject.imageAlt}
+              />
+
+              <span className="featured__image-overlay">
+                <span className="featured__image-button">
+                  Ver web
+                  <span aria-hidden="true">↗</span>
                 </span>
-              </div>
-            )}
+              </span>
+            </a>
           </div>
 
-          <div className="featured__meta" data-reveal style={{ transitionDelay: "220ms" }}>
-            <p className="featured__category">{featuredProject.category}</p>
+          <div
+            className="featured__meta"
+            data-reveal
+            style={{ transitionDelay: "220ms" }}
+          >
+            <p className="featured__category">
+              {featuredProject.category}
+            </p>
 
-            <p className="featured__description">{featuredProject.description}</p>
+            <p className="featured__description">
+              {featuredProject.description}
+            </p>
 
-            <ul className="featured__tech">
-              {featuredProject.tech.map((tech) => (
-                <li key={tech}>{tech}</li>
-              ))}
-            </ul>
+            <div className="featured__details">
+              <div className="featured__detail">
+                <span className="featured__detail-label">
+                  Tecnologías
+                </span>
 
-            <p className="featured__year">{featuredProject.year}</p>
+                <ul className="featured__tech">
+                  {featuredProject.tech.map((tech) => (
+                    <li key={tech}>{tech}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="featured__detail featured__detail--year">
+                <span className="featured__detail-label">
+                  Año
+                </span>
+
+                <p className="featured__year">
+                  {featuredProject.year}
+                </p>
+              </div>
+            </div>
+
+            <a href="#contacto" className="featured__cta">
+              Quiero algo así para mi negocio
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
       </div>

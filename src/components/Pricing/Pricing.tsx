@@ -8,27 +8,75 @@ export function Pricing() {
   return (
     <section id="precios" className="pricing" ref={scopeRef}>
       <div className="container">
-        <h2 className="pricing__title" data-reveal>
-          {pricing.title}
-        </h2>
+        <div className="pricing__intro">
+          <p className="eyebrow" data-reveal>
+            {pricing.eyebrow}
+          </p>
 
-        <ul className="pricing__list">
-          {pricing.items.map((item, index) => (
+          <h2
+            className="pricing__title"
+            data-reveal
+            style={{ transitionDelay: "60ms" }}
+          >
+            {pricing.title}
+          </h2>
+
+          <p
+            className="pricing__intro-text"
+            data-reveal
+            style={{ transitionDelay: "140ms" }}
+          >
+            {pricing.intro}
+          </p>
+        </div>
+
+        <ol className="pricing__factors">
+          {pricing.factors.map((factor, index) => (
             <li
-              key={item.title}
-              className="pricing__item"
+              key={factor.number}
+              className="pricing__factor"
               data-reveal
-              style={{ transitionDelay: `${120 + index * 80}ms` }}
+              style={{
+                transitionDelay: `${220 + index * 100}ms`,
+              }}
             >
-              <span className="pricing__item-title">{item.title}</span>
-              <span className="pricing__item-price">{item.price}</span>
+              <span className="pricing__number">
+                {factor.number}
+              </span>
+
+              <div className="pricing__factor-content">
+                <h3 className="pricing__factor-title">
+                  {factor.title}
+                </h3>
+
+                <p className="pricing__factor-description">
+                  {factor.description}
+                </p>
+              </div>
             </li>
           ))}
-        </ul>
+        </ol>
 
-        <p className="pricing__note" data-reveal style={{ transitionDelay: "440ms" }}>
-          {pricing.note}
-        </p>
+        <div
+          className="pricing__closing"
+          data-reveal
+          style={{ transitionDelay: "560ms" }}
+        >
+          <div className="pricing__closing-line" />
+
+          <div className="pricing__closing-content">
+            <h3>{pricing.closingTitle}</h3>
+
+            <p>{pricing.closingText}</p>
+
+            <a
+              href={pricing.ctaHref}
+              className="pricing__cta"
+            >
+              {pricing.ctaLabel}
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

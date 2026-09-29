@@ -4,24 +4,22 @@
   display: flex;
   align-items: center;
   padding-block: clamp(1rem, 3vh, 2rem);
+  overflow: hidden;
 }
 
 .hero__grid {
   width: 100%;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
-  gap: var(--sp-12);
+  gap: clamp(2rem, 5vw, 5rem);
 }
 
 .hero__copy {
-  /* Evita que el grid trate el ancho intrínseco del texto como mínimo
-     y "empuje" la columna del visual al reducir la ventana. */
   min-width: 0;
+  position: relative;
+  z-index: 2;
 }
-
-/* Titular: misma tipografía para todas las palabras, la jerarquía es
-   exclusivamente de tamaño. Todas comparten el mismo eje izquierdo. */
 
 .hero__title {
   display: flex;
@@ -77,9 +75,6 @@
   font-size: 0.95rem;
 }
 
-/* La línea de tags vive fuera del bloque de ancho limitado (27rem) para
-   poder mantenerse en un solo renglón mientras haya espacio disponible
-   en la columna de texto. */
 .hero__tags {
   margin-top: clamp(0.75rem, 1.8vh, var(--sp-6));
   font-size: clamp(0.72rem, 1.1vw, var(--fs-small));
@@ -89,170 +84,279 @@
   white-space: nowrap;
 }
 
-/* Visual: columna propia, con su propio espacio — nunca se superpone
-   al texto porque vive en su propia celda del grid. */
+/* =========================================================
+   VISUAL
+   ========================================================= */
 
 .hero__visual {
   position: relative;
   min-width: 0;
-  width: min(100%, 21rem);
+  width: min(100%, 39rem);
+  min-height: 27rem;
   margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+
+/* Pequeño conector gráfico que mantiene el lenguaje visual
+   del mockup anterior. */
 .hero__connector {
   position: absolute;
-  top: -1.8rem;
-  left: -2.2rem;
+  top: 1rem;
+  left: -1.5rem;
   width: 3.2rem;
   height: 2.4rem;
   border-left: 1px solid var(--color-accent);
   border-top: 1px solid var(--color-accent);
   border-top-left-radius: var(--radius-m);
   opacity: 0.5;
+  z-index: 0;
 }
 
-.mockup-browser {
-  position: relative;
-  width: 100%;
-  background: #fff;
-  border-radius: var(--radius-m);
-  box-shadow: 0 30px 60px -25px rgba(20, 20, 20, 0.35);
-  overflow: hidden;
-  border: 1px solid var(--color-line);
-}
+/* =========================================================
+   EDITORIAL DETAILS
+   ========================================================= */
 
-.mockup-browser__bar {
-  display: flex;
-  gap: 6px;
-  padding: 0.6rem 0.8rem;
-  border-bottom: 1px solid var(--color-line);
-}
+.hero__meta {
+  position: absolute;
+  top: -1.25rem;
+  right: 0.5rem;
+  z-index: 4;
 
-.mockup-browser__bar span {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--color-line);
-}
-
-.mockup-browser__body {
-  padding: var(--sp-4);
-}
-
-.mockup-browser__nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--sp-4);
+  gap: 0.8rem;
+
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: var(--color-ink-faint);
 }
 
-.mockup-browser__brand {
-  width: 3.6rem;
-  height: 0.5rem;
-  background: var(--color-ink);
-  border-radius: 2px;
-}
-
-.mockup-browser__links {
-  display: flex;
-  gap: var(--sp-2);
-}
-
-.mockup-browser__links span {
-  width: 1.8rem;
-  height: 0.35rem;
-  border-radius: 2px;
-  background: var(--color-line);
-}
-
-.mockup-browser__title {
-  width: 85%;
-  height: 0.85rem;
-  border-radius: 2px;
-  background: var(--color-ink);
-  margin-bottom: var(--sp-2);
-}
-
-.mockup-browser__title--short {
-  width: 55%;
+.hero__meta::before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1px;
   background: var(--color-accent);
-  margin-bottom: var(--sp-4);
+  opacity: 0.55;
 }
 
-.mockup-browser__btn {
-  width: 6rem;
-  height: 1.6rem;
-  border-radius: var(--radius-s);
-  background: var(--color-ink);
+.hero__cross {
+  position: absolute;
+  z-index: 4;
+
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1;
+
+  color: var(--color-accent);
+  opacity: 0.55;
 }
 
-/* El teléfono se apoya sobre el borde del navegador pero queda contenido
-   dentro de la misma columna visual — no invade la columna de texto. */
-.mockup-phone {
+.hero__cross--top {
+  top: 2.2rem;
+  left: 1.5rem;
+}
+
+.hero__connector {
+  position: absolute;
+  top: 1rem;
+  left: -1.5rem;
+
+  width: 3.2rem;
+  height: 2.4rem;
+
+  border-left: 1px solid var(--color-accent);
+  border-top: 1px solid var(--color-accent);
+  border-top-left-radius: var(--radius-m);
+
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+.device-laptop {
   position: relative;
-  margin: -2.4rem auto 0;
-  margin-left: auto;
-  margin-right: 8%;
-  width: 6.6rem;
-  aspect-ratio: 9 / 18.5;
-  background: var(--color-ink);
-  border-radius: 1.3rem;
-  padding: 0.38rem;
-  box-shadow: 0 22px 32px -16px rgba(20, 20, 20, 0.45);
+  width: min(100%, 35rem);
+  transform: translateX(-1rem);
+  z-index: 1;
 }
 
-.mockup-phone__notch {
-  width: 1.7rem;
-  height: 0.26rem;
-  background: var(--color-ink);
-  border-radius: 4px;
-  margin: 0.22rem auto 0.28rem;
+/* Pantalla completa */
+.device-laptop__screen {
+  position: relative;
+  padding: 0.65rem;
+  background: #111;
+  border-radius: 0.75rem 0.75rem 0.35rem 0.35rem;
+  box-shadow:
+    0 35px 55px -25px rgba(20, 20, 20, 0.42),
+    0 10px 20px -15px rgba(20, 20, 20, 0.25);
 }
 
-.mockup-phone__screen {
-  height: calc(100% - 0.75rem);
-  background: var(--color-bg);
-  border-radius: 0.95rem;
-  padding: var(--sp-2);
+/* Marco interno de la pantalla */
+.device-laptop__bezel {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0.35rem;
+  aspect-ratio: 1887 / 902;
 }
 
-.mockup-phone__row {
-  width: 60%;
-  height: 0.32rem;
-  background: var(--color-ink);
-  border-radius: 2px;
-  margin-bottom: var(--sp-2);
-}
-
-.mockup-phone__card {
+.device-laptop__bezel img {
+  display: block;
   width: 100%;
-  height: 2.7rem;
-  background: var(--color-accent-soft);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--radius-s);
-  margin-bottom: var(--sp-2);
+  height: 100%;
+  object-fit: cover;
 }
 
-.mockup-phone__line {
-  width: 100%;
+/* Cámara */
+.device-laptop__camera {
+  position: absolute;
+  top: 0.27rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.28rem;
   height: 0.28rem;
-  border-radius: 2px;
-  background: var(--color-line);
-  margin-bottom: var(--sp-1);
+  border-radius: 50%;
+  background: #303030;
 }
 
-.mockup-phone__line--short {
-  width: 40%;
+/* Base de la laptop */
+.device-laptop__base {
+  position: relative;
+  width: 106%;
+  height: 0.65rem;
+  margin-left: -3%;
+  background: linear-gradient(
+    to bottom,
+    #242424 0%,
+    #111 55%,
+    #0a0a0a 100%
+  );
+  border-radius: 0 0 0.75rem 0.75rem;
+  box-shadow: 0 12px 20px -12px rgba(20, 20, 20, 0.4);
 }
+
+/* Bisagra */
+.device-laptop__hinge {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 18%;
+  height: 0.18rem;
+  background: #3b3b3b;
+  border-radius: 0 0 0.2rem 0.2rem;
+}
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+.device-phone {
+  position: absolute;
+  right: 0.2rem;
+  bottom: -1.8rem;
+  width: clamp(6.5rem, 15vw, 8.2rem);
+  aspect-ratio: 411 / 826;
+  padding: 0.38rem;
+  background: #101010;
+  border: 2px solid #282828;
+  border-radius: 1.35rem;
+  box-shadow:
+    0 28px 45px -18px rgba(20, 20, 20, 0.5),
+    0 8px 18px -10px rgba(20, 20, 20, 0.3);
+  transform: rotate(2deg);
+  z-index: 3;
+}
+
+/* Pantalla del teléfono */
+.device-phone__screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 1.05rem;
+}
+
+/* La captura ya tiene exactamente el formato de mobile,
+   por eso se muestra completa dentro del teléfono. */
+.device-phone__screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Notch / Dynamic Island */
+.device-phone__speaker {
+  position: absolute;
+  z-index: 2;
+  top: 0.55rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2.2rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #080808;
+}
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.hero__project-label {
+  position: absolute;
+  left: 0;
+  bottom: -2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-line);
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  box-shadow: 0 10px 25px -18px rgba(20, 20, 20, 0.4);
+  z-index: 4;
+}
+
+.hero__project-label-dot {
+  width: 0.38rem;
+  height: 0.38rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 1080px) {
   .hero {
     min-height: auto;
-    padding-block: var(--sp-16) var(--sp-8);
+    padding-block: var(--sp-16) var(--sp-12);
   }
 
   .hero__grid {
     grid-template-columns: 1fr;
+    gap: var(--sp-12);
   }
 
   .hero__word--huge {
@@ -272,19 +376,148 @@
   }
 
   .hero__visual {
-    margin-top: var(--sp-12);
+    width: min(100%, 42rem);
+    min-height: 27rem;
+    margin-top: var(--sp-4);
   }
 
   .hero__connector {
     display: none;
   }
+
+  .device-laptop {
+    width: min(100%, 36rem);
+    transform: translateX(-0.75rem);
+  }
+
+  .device-phone {
+    right: 0;
+  }
+
+  .hero__project-label {
+    left: 2%;
+  }
 }
 
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 560px) {
-  /* Si en pantallas muy angostas la línea de tags no entra en un
-     renglón, se le permite envolver en vez de generar overflow. */
+  .hero {
+    padding-block: var(--sp-12) var(--sp-16);
+  }
+
+  .hero__grid {
+    gap: var(--sp-8);
+  }
+
+  .hero__foot {
+    margin-top: var(--sp-6);
+  }
+
   .hero__tags {
     white-space: normal;
     line-height: 1.4;
+  }
+
+  .hero__visual {
+    width: 100%;
+    min-height: 19rem;
+    margin-top: var(--sp-4);
+    align-items: flex-start;
+  }
+
+  .device-laptop {
+    width: 92%;
+    transform: translateX(-2%);
+  }
+
+  .device-laptop__screen {
+    padding: 0.42rem;
+    border-radius: 0.55rem 0.55rem 0.25rem 0.25rem;
+  }
+
+  .device-laptop__base {
+    height: 0.4rem;
+  }
+
+  .device-laptop__camera {
+    width: 0.18rem;
+    height: 0.18rem;
+    top: 0.18rem;
+  }
+
+  .device-phone {
+    width: clamp(5.8rem, 25vw, 7rem);
+    right: 1%;
+    bottom: -1rem;
+    padding: 0.3rem;
+    border-radius: 1rem;
+  }
+
+  .device-phone__screen {
+    border-radius: 0.78rem;
+  }
+
+  .device-phone__speaker {
+    top: 0.4rem;
+    width: 1.7rem;
+    height: 0.32rem;
+  }
+
+  .hero__project-label {
+    left: 0;
+    bottom: -2.5rem;
+    font-size: 0.62rem;
+    padding: 0.45rem 0.6rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 390px) {
+  .hero__visual {
+    min-height: 17rem;
+  }
+
+  .device-phone {
+    width: 5.5rem;
+  }
+
+  .hero__project-label {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 1080px) {
+  .hero__meta {
+    top: -1rem;
+    right: 1rem;
+  }
+
+  .hero__cross--top {
+    top: 1.5rem;
+    left: 0.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__meta {
+    top: -1.25rem;
+    right: 0;
+    font-size: 0.56rem;
+  }
+
+  .hero__meta::before {
+    width: 1.4rem;
+  }
+
+  .hero__cross--top {
+    top: 0.5rem;
+    left: 0;
+    font-size: 0.95rem;
   }
 }

@@ -1,5 +1,7 @@
 import { useReveal } from "../../hooks/useReveal";
 import { hero } from "../../content/site";
+import magnoliasDesktop from "../../assets/projects/magnolias-desktop.png";
+import magnoliasMobile from "../../assets/projects/magnolias-mobile.png";
 import "./Hero.css";
 
 export function Hero() {
@@ -22,7 +24,11 @@ export function Hero() {
             ))}
           </h1>
 
-          <div className="hero__foot" data-reveal style={{ transitionDelay: "380ms" }}>
+          <div
+            className="hero__foot"
+            data-reveal
+            style={{ transitionDelay: "380ms" }}
+          >
             <p className="hero__subtitle">{hero.subtitle}</p>
 
             <div className="hero__actions">
@@ -32,45 +38,67 @@ export function Hero() {
             </div>
           </div>
 
-          <p className="hero__tags" data-reveal style={{ transitionDelay: "440ms" }}>
+          <p
+            className="hero__tags"
+            data-reveal
+            style={{ transitionDelay: "440ms" }}
+          >
             {hero.tags.join(" · ")}
           </p>
         </div>
 
-        <div className="hero__visual" aria-hidden="true" data-reveal style={{ transitionDelay: "220ms" }}>
-          <div className="hero__connector" />
+        <div
+          className="hero__visual"
+          aria-label="Vista del proyecto Magnolias Cotillón en escritorio y mobile"
+          data-reveal
+          style={{ transitionDelay: "220ms" }}
+        >
+          {/* Detalle editorial */}
+          <div className="hero__meta" aria-hidden="true">
+            <span>WEB</span>
+            <span>2026</span>
+          </div>
 
-          <div className="mockup-browser">
-            <div className="mockup-browser__bar">
-              <span />
-              <span />
-              <span />
+          {/* Detalle técnico */}
+          <span className="hero__cross hero__cross--top" aria-hidden="true">
+            +
+          </span>
+
+          <div className="hero__connector" aria-hidden="true" />
+
+          {/* Pantalla de escritorio */}
+          <div className="device-laptop">
+            <div className="device-laptop__screen">
+              <div className="device-laptop__bezel">
+                <img
+                  src={magnoliasDesktop}
+                  alt="Sitio web de Magnolias Cotillón en versión escritorio"
+                />
+              </div>
+
+              <div className="device-laptop__camera" />
             </div>
-            <div className="mockup-browser__body">
-              <div className="mockup-browser__nav">
-                <div className="mockup-browser__brand" />
-                <div className="mockup-browser__links">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </div>
-              <div className="mockup-browser__hero">
-                <div className="mockup-browser__title" />
-                <div className="mockup-browser__title mockup-browser__title--short" />
-                <div className="mockup-browser__btn" />
-              </div>
+
+            <div className="device-laptop__base">
+              <div className="device-laptop__hinge" />
             </div>
           </div>
 
-          <div className="mockup-phone">
-            <div className="mockup-phone__notch" />
-            <div className="mockup-phone__screen">
-              <div className="mockup-phone__row" />
-              <div className="mockup-phone__card" />
-              <div className="mockup-phone__line" />
-              <div className="mockup-phone__line mockup-phone__line--short" />
+          {/* Teléfono mobile */}
+          <div className="device-phone">
+            <div className="device-phone__speaker" />
+
+            <div className="device-phone__screen">
+              <img
+                src={magnoliasMobile}
+                alt="Sitio web de Magnolias Cotillón en versión mobile"
+              />
             </div>
+          </div>
+
+          <div className="hero__project-label">
+            <span className="hero__project-label-dot" />
+            <span>Proyecto real · Magnolias Cotillón</span>
           </div>
         </div>
       </div>

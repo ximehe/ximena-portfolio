@@ -1,20 +1,26 @@
 :root {
   /* Color */
-  --color-bg: #f5f2ec;
-  --color-bg-soft: #efebe2;
+
+  --color-bg: #fbfaf7;
+  --color-bg-soft: #f1f6f9;
+
   --color-ink: #141414;
   --color-ink-soft: rgba(20, 20, 20, 0.62);
   --color-ink-faint: rgba(20, 20, 20, 0.36);
-  --color-line: rgba(20, 20, 20, 0.12);
+
+  --color-line: rgba(20, 20, 20, 0.11);
+
   --color-accent: #2b4dff;
   --color-accent-soft: rgba(43, 77, 255, 0.1);
   --color-accent-ink: #0f1f8a;
 
   /* Typography */
+
   --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
 
   /* Fluid type scale */
+
   --fs-hero: clamp(3.2rem, 5vw + 2rem, 7.5rem);
   --fs-h1: clamp(2.4rem, 2.6vw + 1.6rem, 4.2rem);
   --fs-h2: clamp(1.8rem, 1.6vw + 1.2rem, 2.6rem);
@@ -25,6 +31,7 @@
   --fs-eyebrow: 0.78rem;
 
   /* Spacing scale */
+
   --sp-1: 0.25rem;
   --sp-2: 0.5rem;
   --sp-3: 0.75rem;
@@ -38,6 +45,7 @@
   --sp-48: 12rem;
 
   /* Layout */
+
   --header-h: 4.4rem;
   --content-max: 1320px;
   --content-pad: clamp(1.5rem, 4vw, 4rem);
@@ -45,6 +53,7 @@
   --radius-m: 10px;
 
   /* Motion */
+
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 0.2s;
   --dur-base: 0.5s;

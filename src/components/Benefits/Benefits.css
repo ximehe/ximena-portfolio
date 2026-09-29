@@ -1,32 +1,22 @@
 .benefits {
-  padding-block: clamp(4rem, 10vh, 8rem);
+  padding-block: clamp(5rem, 12vh, 9rem);
+  border-top: 1px solid var(--color-line);
 }
-
-.benefits__grid {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: var(--sp-16);
-  align-items: start;
-}
-
-/* Frase introductoria: mismo lenguaje tipográfico del Hero pero sin
-   competir con él — sin mayúsculas, escala más contenida. */
 
 .benefits__intro {
-  position: sticky;
-  top: calc(var(--header-h) + var(--sp-8));
+  max-width: 52rem;
+  margin-bottom: clamp(3.5rem, 8vh, 6rem);
 }
 
 .benefits__phrase {
-  margin-top: var(--sp-4);
   display: flex;
   flex-direction: column;
+  margin-top: var(--sp-4);
   font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
   font-weight: 800;
-  text-transform: uppercase;
-  line-height: 0.98;
-  letter-spacing: -0.015em;
-  font-size: clamp(2.1rem, 4.6vw, 3.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
 }
 
 .benefits__phrase-line {
@@ -37,81 +27,295 @@
   color: var(--color-accent);
 }
 
-/* Beneficios: piezas editoriales, no cards */
+/* --------------------------------
+   LISTA
+-------------------------------- */
 
 .benefits__list {
   display: flex;
   flex-direction: column;
+  max-width: 72rem;
+  margin-left: auto;
+  border-bottom: 1px solid var(--color-line);
 }
 
 .benefits__item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: start;
-  gap: var(--sp-8);
-  padding-block: clamp(1.75rem, 4vh, 2.75rem);
+  position: relative;
   border-top: 1px solid var(--color-line);
-}
-
-.benefits__item:last-child {
-  border-bottom: 1px solid var(--color-line);
 }
 
 .benefits__item:nth-child(2n) {
   margin-left: clamp(0px, 6vw, 4rem);
 }
 
+/* --------------------------------
+   BOTÓN / FILA
+-------------------------------- */
+
+.benefits__trigger {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr) auto;
+  align-items: center;
+  width: 100%;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-block: clamp(1.75rem, 4vh, 2.75rem);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    padding-left 300ms var(--ease-out),
+    padding-right 300ms var(--ease-out),
+    background-color 300ms ease;
+}
+
+.benefits__trigger::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 300ms var(--ease-out);
+}
+
+/* --------------------------------
+   NÚMERO
+-------------------------------- */
+
 .benefits__number {
+  align-self: start;
+  padding-top: 0.15rem;
   font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
   font-weight: 800;
-  font-size: clamp(2.6rem, 5.2vw, 4.4rem);
   line-height: 0.9;
   color: transparent;
   -webkit-text-stroke: 1.5px var(--color-ink);
-  transition: -webkit-text-stroke-color var(--dur-base) var(--ease-out);
+  transition:
+    color 250ms ease,
+    -webkit-text-stroke-color 250ms ease,
+    transform 300ms var(--ease-out);
 }
 
-.benefits__item:hover .benefits__number {
-  -webkit-text-stroke-color: var(--color-accent);
-}
+/* --------------------------------
+   TEXTO
+-------------------------------- */
 
 .benefits__item-copy {
-  max-width: 26rem;
-  padding-top: 0.4em;
+  display: block;
+  max-width: 38rem;
 }
 
 .benefits__item-title {
+  display: block;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
-  margin-bottom: var(--sp-2);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  transition:
+    color 250ms ease,
+    transform 300ms var(--ease-out);
 }
 
 .benefits__item-text {
+  display: block;
+  max-width: 34rem;
+  margin-top: 0.65rem;
   font-size: 0.95rem;
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--color-ink-soft);
 }
 
-@media (max-width: 1080px) {
-  .benefits__grid {
-    grid-template-columns: 1fr;
-    gap: var(--sp-12);
-  }
+/* --------------------------------
+   FLECHA
+-------------------------------- */
 
-  .benefits__intro {
-    position: static;
+.benefits__item-arrow {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  font-size: 1rem;
+  color: var(--color-ink-faint);
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    color 250ms ease,
+    transform 300ms var(--ease-out);
+}
+
+/* --------------------------------
+   DETALLE
+-------------------------------- */
+
+.benefits__details {
+  position: relative;
+  display: grid;
+  grid-template-rows: 0fr;
+  padding-left: calc(5.5rem + clamp(1.5rem, 4vw, 4rem));
+  padding-right: clamp(1.5rem, 4vw, 4rem);
+  transition:
+    grid-template-rows 450ms var(--ease-out),
+    padding-top 450ms var(--ease-out);
+}
+
+.benefits__details-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Caja visual */
+
+.benefits__details p {
+  position: relative;
+  max-width: 42rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-ink);
+  opacity: 0;
+  transform: translateY(-12px);
+  transition:
+    opacity 300ms ease,
+    transform 450ms var(--ease-out);
+}
+
+.benefits__details p::before {
+  content: "EN DETALLE";
+  display: block;
+  margin-bottom: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+/* Fondo editorial */
+
+.benefits__item--open .benefits__details {
+  grid-template-rows: 1fr;
+  padding-top: 0.25rem;
+  padding-bottom: clamp(1.75rem, 4vh, 2.75rem);
+}
+
+.benefits__item--open .benefits__details::before {
+  content: "";
+  position: absolute;
+}
+
+/* Creamos el bloque visual con el propio párrafo */
+
+.benefits__item--open .benefits__details p {
+  padding: 1.5rem clamp(1.5rem, 3vw, 2.25rem);
+  background: rgba(215, 230, 242, 0.55);
+  border-left: 3px solid var(--color-accent);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------
+   TABLET
+-------------------------------- */
+
+@media (max-width: 720px) {
+  .benefits__details {
+    padding-left: calc(4rem + 1.25rem);
+    padding-right: 1.25rem;
   }
 }
 
-@media (max-width: 620px) {
+/* --------------------------------
+   MOBILE
+-------------------------------- */
+
+@media (max-width: 560px) {
+  .benefits__details {
+    padding-left: 3.8rem;
+    padding-right: 0;
+  }
+
+  .benefits__item--open .benefits__details {
+    padding-top: 0.15rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .benefits__item--open .benefits__details p {
+    padding: 1.25rem 1.1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .benefits__details p::before {
+    margin-bottom: 0.7rem;
+    font-size: 0.6rem;
+  }
+}
+
+/* --------------------------------
+   HOVER / ACTIVE
+-------------------------------- */
+
+.benefits__trigger:hover {
+  padding-left: var(--sp-4);
+  padding-right: var(--sp-4);
+  background: var(--color-bg-soft);
+}
+
+.benefits__trigger:hover::before,
+.benefits__item--open .benefits__trigger::before {
+  transform: scaleY(1);
+}
+
+.benefits__trigger:hover .benefits__number,
+.benefits__item--open .benefits__number {
+  -webkit-text-stroke-color: var(--color-accent);
+  transform: translateX(2px);
+}
+
+.benefits__trigger:hover .benefits__item-title,
+.benefits__item--open .benefits__item-title {
+  transform: translateX(5px);
+}
+
+.benefits__trigger:hover .benefits__item-arrow,
+.benefits__item--open .benefits__item-arrow {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.benefits__item--open .benefits__item-arrow {
+  transform: rotate(0deg);
+}
+
+/* --------------------------------
+   TABLET
+-------------------------------- */
+
+@media (max-width: 720px) {
   .benefits {
     padding-block: var(--sp-16);
   }
 
-  .benefits__item {
-    grid-template-columns: 1fr;
-    gap: var(--sp-3);
+  .benefits__phrase {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .benefits__trigger {
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+    gap: 1.25rem;
   }
 
   .benefits__item:nth-child(2n) {
@@ -119,6 +323,82 @@
   }
 
   .benefits__number {
-    font-size: 2.6rem;
+    font-size: 2.8rem;
+  }
+
+  .benefits__item-arrow {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .benefits__details p {
+    margin-left: calc(4rem + 1.25rem);
+    padding-right: 3rem;
+  }
+}
+
+/* --------------------------------
+   MOBILE
+-------------------------------- */
+
+@media (max-width: 560px) {
+  .benefits__intro {
+    margin-bottom: 3.5rem;
+  }
+
+  .benefits__phrase {
+    font-size: clamp(2.4rem, 10vw, 3.4rem);
+    line-height: 0.97;
+  }
+
+  .benefits__trigger {
+    grid-template-columns: 2.8rem minmax(0, 1fr) auto;
+    gap: 1rem;
+    padding-block: 1.5rem;
+  }
+
+  .benefits__trigger:hover {
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+  }
+
+  .benefits__number {
+    font-size: 2.3rem;
+  }
+
+  .benefits__item-copy {
+    padding-right: 0;
+  }
+
+  .benefits__item-title {
+    font-size: 1.25rem;
+  }
+
+  .benefits__item-text {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .benefits__item-arrow {
+    width: 2.15rem;
+    height: 2.15rem;
+    font-size: 0.9rem;
+  }
+
+  .benefits__trigger::before {
+    display: none;
+  }
+
+  .benefits__details p {
+    margin-left: 3.8rem;
+    padding-right: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .benefits__item--open .benefits__details p {
+    padding-bottom: 1.5rem;
   }
 }

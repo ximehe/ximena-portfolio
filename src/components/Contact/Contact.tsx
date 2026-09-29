@@ -1,5 +1,5 @@
 import { useReveal } from "../../hooks/useReveal";
-import { contact, getWhatsappUrl, socials } from "../../content/site";
+import { contact, getWhatsappUrl } from "../../content/site";
 import "./Contact.css";
 
 export function Contact() {
@@ -7,47 +7,54 @@ export function Contact() {
 
   return (
     <section id="contacto" className="contact" ref={scopeRef}>
-      <div className="container contact__inner">
-        <h2 className="contact__title" data-reveal>
-          {contact.title}
-        </h2>
+      <div className="container">
+        <div className="contact__inner">
+          <div className="contact__heading">
+            <p className="eyebrow" data-reveal>
+              Contacto
+            </p>
 
-        <p className="contact__text" data-reveal style={{ transitionDelay: "80ms" }}>
-          {contact.text}
-        </p>
+            <h2
+              className="contact__title"
+              data-reveal
+              style={{ transitionDelay: "80ms" }}
+            >
+              ¿Hacemos realidad
+              <span>tu web?</span>
+            </h2>
+          </div>
 
-        <div className="contact__actions" data-reveal style={{ transitionDelay: "160ms" }}>
-          <a
-            href={getWhatsappUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary contact__cta"
+          <div
+            className="contact__action"
+            data-reveal
+            style={{ transitionDelay: "180ms" }}
           >
-            {contact.ctaLabel}
-          </a>
+            <p className="contact__text">
+              {contact.text}
+            </p>
+
+            <a
+              href={getWhatsappUrl()}
+              className="contact__cta"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>{contact.ctaLabel}</span>
+              <span className="contact__cta-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </div>
         </div>
 
-        <ul
-          className="contact__socials"
+        <div
+          className="contact__bottom"
           data-reveal
-          style={{ transitionDelay: "240ms" }}
+          style={{ transitionDelay: "280ms" }}
         >
-          <li>
-            <a href={socials.instagram} target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-          </li>
-          <li>
-            <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a href={socials.github} target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-          </li>
-        </ul>
+          <span>¿Tenés una idea?</span>
+          <span>Hablemos.</span>
+        </div>
       </div>
     </section>
   );

@@ -1,77 +1,178 @@
 .contact {
-  padding-block: clamp(4.5rem, 12vh, 9rem);
+  padding-block: clamp(6rem, 16vh, 11rem);
   border-top: 1px solid var(--color-line);
 }
 
 .contact__inner {
-  max-width: 42rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+  gap: clamp(3rem, 9vw, 9rem);
+  align-items: end;
+}
+
+/* -------------------------------- */
+/* TITLE                            */
+/* -------------------------------- */
+
+.contact__heading {
+  max-width: 52rem;
 }
 
 .contact__title {
-  font-size: clamp(2.6rem, 6vw, 4.6rem);
-  line-height: 1;
+  max-width: 48rem;
+  margin-top: var(--sp-4);
+
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+}
+
+.contact__title span {
+  display: block;
+  color: var(--color-accent);
+}
+
+/* -------------------------------- */
+/* ACTION                           */
+/* -------------------------------- */
+
+.contact__action {
+  max-width: 26rem;
+  padding-bottom: 0.4rem;
 }
 
 .contact__text {
-  margin-top: var(--sp-6);
-  font-size: var(--fs-lead);
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--color-ink-soft);
-  max-width: 32rem;
-  line-height: 1.55;
 }
 
-.contact__actions {
-  margin-top: var(--sp-8);
-}
+/* -------------------------------- */
+/* CTA                              */
+/* -------------------------------- */
 
 .contact__cta {
-  padding: 1.1rem 1.9rem;
-  font-size: 1.05rem;
-}
-
-.contact__socials {
   display: flex;
-  gap: var(--sp-8);
-  margin-top: clamp(2.5rem, 5vh, 3.5rem);
-  padding-top: var(--sp-6);
-  border-top: 1px solid var(--color-line);
-}
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
 
-.contact__socials a {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-ink-soft);
-  position: relative;
-  transition: color var(--dur-fast) var(--ease-out);
-}
+  margin-top: 2rem;
+  padding: 1.1rem 1.2rem;
 
-.contact__socials a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 100%;
-  bottom: -4px;
-  height: 1px;
-  background: var(--color-accent);
-  transition: right var(--dur-fast) var(--ease-out);
-}
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-line);
 
-.contact__socials a:hover {
   color: var(--color-ink);
+  text-decoration: none;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    transform 350ms var(--ease-out);
 }
 
-.contact__socials a:hover::after {
-  right: 0;
+.contact__cta:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
 }
+
+.contact__cta-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+
+  transition:
+    transform 350ms var(--ease-out),
+    border-color 300ms ease;
+}
+
+.contact__cta:hover .contact__cta-arrow {
+  transform: rotate(45deg);
+  border-color: currentColor;
+}
+
+/* -------------------------------- */
+/* BOTTOM                           */
+/* -------------------------------- */
+
+.contact__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: clamp(5rem, 12vh, 9rem);
+  padding-top: 1.25rem;
+
+  border-top: 1px solid var(--color-line);
+
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-faint);
+}
+
+.contact__bottom span:last-child {
+  color: var(--color-accent);
+}
+
+/* -------------------------------- */
+/* TABLET                           */
+/* -------------------------------- */
+
+@media (max-width: 900px) {
+  .contact__inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .contact__action {
+    max-width: 34rem;
+  }
+}
+
+/* -------------------------------- */
+/* MOBILE                           */
+/* -------------------------------- */
 
 @media (max-width: 560px) {
   .contact {
     padding-block: var(--sp-16);
   }
 
-  .contact__socials {
-    gap: var(--sp-6);
-    flex-wrap: wrap;
+  .contact__title {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+    line-height: 0.9;
+  }
+
+  .contact__action {
+    max-width: none;
+  }
+
+  .contact__text {
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .contact__cta {
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+
+  .contact__bottom {
+    margin-top: 4rem;
   }
 }

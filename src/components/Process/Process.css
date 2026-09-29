@@ -9,8 +9,9 @@
   margin-bottom: clamp(2.5rem, 6vh, 4rem);
 }
 
-/* Mobile / tablet: recorrido vertical con línea de conexión a la
-   izquierda. */
+/* -------------------------------- */
+/* LISTA / TIMELINE                 */
+/* -------------------------------- */
 
 .process__list {
   position: relative;
@@ -20,6 +21,7 @@
   list-style: none;
 }
 
+/* Línea base */
 .process__list::before {
   content: "";
   position: absolute;
@@ -29,6 +31,29 @@
   width: 1px;
   background: var(--color-line);
 }
+
+/* Línea animada */
+.process__list::after {
+  content: "";
+  position: absolute;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  left: 1.6rem;
+  width: 1px;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1.4s var(--ease-out);
+}
+
+/* Cuando la sección entra en viewport */
+.process.is-visible .process__list::after {
+  transform: scaleY(1);
+}
+
+/* -------------------------------- */
+/* STEP                             */
+/* -------------------------------- */
 
 .process__step {
   position: relative;
@@ -42,36 +67,71 @@
   padding-top: 0;
 }
 
+/* -------------------------------- */
+/* NÚMERO                           */
+/* -------------------------------- */
+
 .process__number {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 3.2rem;
   height: 3.2rem;
+
   border-radius: 50%;
   background: var(--color-bg);
   border: 1px solid var(--color-line);
+
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.95rem;
-  transition: border-color var(--dur-base) var(--ease-out),
-    color var(--dur-base) var(--ease-out);
+
+  transition:
+    border-color 350ms var(--ease-out),
+    color 350ms var(--ease-out),
+    transform 350ms var(--ease-out),
+    box-shadow 350ms var(--ease-out);
+}
+
+.process__number::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.75);
+  transition:
+    opacity 350ms ease,
+    transform 450ms var(--ease-out);
 }
 
 .process__step:hover .process__number {
   border-color: var(--color-accent);
   color: var(--color-accent);
+  transform: translateY(-2px);
 }
+
+.process__step:hover .process__number::after {
+  opacity: 0.35;
+  transform: scale(1);
+}
+
+/* -------------------------------- */
+/* CONTENIDO                        */
+/* -------------------------------- */
 
 .process__copy {
   padding-top: 0.4rem;
-  transition: transform var(--dur-base) var(--ease-out);
+  transition: transform 350ms var(--ease-out);
 }
 
 .process__step:hover .process__copy {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .process__step-title {
@@ -79,6 +139,14 @@
   font-weight: 800;
   font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   margin-bottom: var(--sp-2);
+
+  transition:
+    color 250ms ease,
+    transform 350ms var(--ease-out);
+}
+
+.process__step:hover .process__step-title {
+  color: var(--color-accent);
 }
 
 .process__step-text {
@@ -86,23 +154,30 @@
   line-height: 1.55;
   color: var(--color-ink-soft);
   max-width: 28rem;
-  transition: color var(--dur-base) var(--ease-out);
+
+  transition:
+    color 300ms ease,
+    transform 350ms var(--ease-out);
 }
 
 .process__step:hover .process__step-text {
   color: var(--color-ink);
 }
 
-/* Desktop: timeline horizontal — los 4 pasos comparten una línea de
-   conexión superior, sin cards ni fondos. */
+/* -------------------------------- */
+/* DESKTOP                          */
+/* -------------------------------- */
+
 @media (min-width: 900px) {
   .process__list {
     max-width: none;
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--sp-8);
   }
 
+  /* Línea horizontal base */
   .process__list::before {
     top: 1.6rem;
     bottom: auto;
@@ -112,12 +187,30 @@
     height: 1px;
   }
 
+  /* Línea horizontal animada */
+  .process__list::after {
+    top: 1.6rem;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    height: 1px;
+
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .process.is-visible .process__list::after {
+    transform: scaleX(1);
+  }
+
   .process__step {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     grid-template-columns: none;
     gap: 0;
+
     padding-block: 0;
   }
 
@@ -132,5 +225,89 @@
   .process__copy {
     padding-top: 0;
     max-width: 16rem;
+  }
+
+  /*
+    Pequeño retraso visual entre la línea
+    y el contenido de cada paso.
+  */
+  .process__step:nth-child(1) .process__copy {
+    transition-delay: 100ms;
+  }
+
+  .process__step:nth-child(2) .process__copy {
+    transition-delay: 180ms;
+  }
+
+  .process__step:nth-child(3) .process__copy {
+    transition-delay: 260ms;
+  }
+
+  .process__step:nth-child(4) .process__copy {
+    transition-delay: 340ms;
+  }
+}
+
+/* -------------------------------- */
+/* TABLET / MOBILE                  */
+/* -------------------------------- */
+
+@media (max-width: 899px) {
+  .process__step:hover .process__copy {
+    transform: translateY(-2px);
+  }
+}
+
+/* -------------------------------- */
+/* MOBILE                           */
+/* -------------------------------- */
+
+@media (max-width: 560px) {
+  .process {
+    padding-block: var(--sp-16);
+  }
+
+  .process__title {
+    margin-bottom: 2.5rem;
+  }
+
+  .process__step {
+    grid-template-columns: 3rem 1fr;
+    gap: 1.25rem;
+    padding-block: 1.75rem;
+  }
+
+  .process__number {
+    width: 3rem;
+    height: 3rem;
+    font-size: 0.85rem;
+  }
+
+  .process__list::before,
+  .process__list::after {
+    left: 1.5rem;
+  }
+
+  .process__list::before {
+    top: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .process__list::after {
+    top: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .process__copy {
+    padding-top: 0.2rem;
+  }
+
+  .process__step-title {
+    font-size: 1.15rem;
+  }
+
+  .process__step-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 }

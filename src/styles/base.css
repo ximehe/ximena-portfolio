@@ -10,11 +10,69 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-bg);
+  background-color: var(--color-bg);
+  background-image:
+    /* Halo celeste superior izquierdo */
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(215, 230, 242, 0.72),
+      transparent 24rem
+    ),
+
+    /* Halo celeste lateral */
+    radial-gradient(
+      circle at 94% 36%,
+      rgba(215, 230, 242, 0.48),
+      transparent 30rem
+    ),
+
+    /* Halo inferior */
+    radial-gradient(
+      circle at 22% 88%,
+      rgba(215, 230, 242, 0.4),
+      transparent 27rem
+    ),
+
+    /* Retícula horizontal */
+    linear-gradient(
+      rgba(20, 20, 20, 0.028) 1px,
+      transparent 1px
+    ),
+
+    /* Retícula vertical */
+    linear-gradient(
+      90deg,
+      rgba(20, 20, 20, 0.028) 1px,
+      transparent 1px
+    ),
+
+    /* Micro puntos */
+    radial-gradient(
+      rgba(20, 20, 20, 0.055) 0.55px,
+      transparent 0.7px
+    );
+
+  background-size:
+    auto,
+    auto,
+    auto,
+    88px 88px,
+    88px 88px,
+    7px 7px;
+
+  background-attachment:
+    fixed,
+    fixed,
+    fixed,
+    fixed,
+    fixed,
+    fixed;
+
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.5;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -66,11 +124,13 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
+
   font-family: var(--font-body);
   font-size: var(--fs-eyebrow);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+
   color: var(--color-accent);
 }
 
@@ -79,27 +139,34 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
+
   border: 1px solid transparent;
   border-radius: 3px;
+
   padding: 0.9rem 1.6rem;
+
   font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  transition: transform var(--dur-base) var(--ease-out),
+
+  transition:
+    transform var(--dur-base) var(--ease-out),
     background-color var(--dur-base) var(--ease-out),
     border-color var(--dur-base) var(--ease-out),
     box-shadow var(--dur-base) var(--ease-out);
 }
 
-/* Pequeño trazo que crece antes del texto al hover — un detalle
-   gráfico discreto en vez de un ícono. */
+/* Pequeño trazo que crece antes del texto al hover. */
 .btn::before {
   content: "";
   display: block;
+
   width: 0;
   height: 2px;
+
   background: currentColor;
+
   transition: width var(--dur-base) var(--ease-out);
 }
 
@@ -136,6 +203,18 @@ ul {
 .btn-ghost:hover {
   border-color: var(--color-ink);
   background: var(--color-accent-soft);
+}
+
+@media (max-width: 700px) {
+  body {
+    background-size:
+      auto,
+      auto,
+      auto,
+      64px 64px,
+      64px 64px,
+      7px 7px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

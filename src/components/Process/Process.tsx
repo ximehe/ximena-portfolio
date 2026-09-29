@@ -20,10 +20,18 @@ export function Process() {
               data-reveal
               style={{ transitionDelay: `${120 + index * 90}ms` }}
             >
-              <span className="process__number">{step.number}</span>
+              <span className="process__number">
+                <span>{step.number}</span>
+              </span>
+
               <div className="process__copy">
-                <h3 className="process__step-title">{step.title}</h3>
-                <p className="process__step-text">{step.description}</p>
+                <h3 className="process__step-title">
+                  {step.title}
+                </h3>
+
+                <p className="process__step-text">
+                  {step.description}
+                </p>
               </div>
             </li>
           ))}
