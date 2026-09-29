@@ -1,7 +1,7 @@
 import magnoliasDesktop from "../assets/projects/magnolias-desktop.png";
 
 export const brand = {
-  name: "Ximena Dev",
+  name: "xime.dev",
   tagline: "Desarrollo web para negocios y emprendimientos.",
 };
 
@@ -42,7 +42,7 @@ export function getWhatsappUrl() {
 }
 
 export const socials = {
-  instagram: "https://www.instagram.com/ximeheernandez/",
+  instagram: "https://www.instagram.com/xime.dev/",
   linkedin: "https://www.linkedin.com/in/ximehernandez/",
   github: "https://github.com/ximehe",
 };
