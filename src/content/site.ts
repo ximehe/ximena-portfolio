@@ -18,13 +18,13 @@ export const nav = [
 // la jerarquía viene solo de la escala, nunca del desplazamiento.
 export const hero = {
   titleWords: [
-    { text: "Tu", variant: "huge" },
-    { text: "negocio", variant: "huge" },
-    { text: "merece", variant: "small" },
-    { text: "una web", variant: "accent" },
-    { text: "que esté", variant: "small" },
-    { text: "a la altura.", variant: "medium" },
-  ],
+  { text: "Tu", variant: "huge" },
+  { text: "negocio", variant: "huge" },
+  { text: "merece", variant: "editorial" },
+  { text: "una web", variant: "accent" },
+  { text: "que esté", variant: "small" },
+  { text: "a la altura.", variant: "medium" },
+],
   subtitle:
     "Diseño y desarrollo sitios web modernos, rápidos y adaptados a celulares para pequeños negocios y emprendimientos.",
   ctaLabel: "Quiero una web para mi negocio →",
