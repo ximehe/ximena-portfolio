@@ -1,0 +1,290 @@
+.hero {
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
+  display: flex;
+  align-items: center;
+  padding-block: clamp(1rem, 3vh, 2rem);
+}
+
+.hero__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: var(--sp-12);
+}
+
+.hero__copy {
+  /* Evita que el grid trate el ancho intrínseco del texto como mínimo
+     y "empuje" la columna del visual al reducir la ventana. */
+  min-width: 0;
+}
+
+/* Titular: misma tipografía para todas las palabras, la jerarquía es
+   exclusivamente de tamaño. Todas comparten el mismo eje izquierdo. */
+
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__word {
+  display: block;
+  width: 100%;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+}
+
+.hero__word--huge {
+  font-size: clamp(2.3rem, min(10vh, 6.8vw), 5.6rem);
+}
+
+.hero__word--accent {
+  font-size: clamp(2.5rem, min(10.8vh, 7.4vw), 6.1rem);
+  color: var(--color-accent);
+}
+
+.hero__word--medium {
+  font-size: clamp(1.8rem, min(6.8vh, 4.8vw), 3.7rem);
+}
+
+.hero__word--small {
+  font-size: clamp(1.15rem, min(4.2vh, 2.9vw), 2.2rem);
+}
+
+.hero__foot {
+  margin-top: var(--sp-8);
+  max-width: 27rem;
+}
+
+.hero__subtitle {
+  font-size: clamp(0.95rem, 2vh, var(--fs-lead));
+  color: var(--color-ink-soft);
+  line-height: 1.5;
+}
+
+.hero__actions {
+  margin-top: clamp(0.75rem, 1.8vh, var(--sp-6));
+}
+
+.hero__actions .btn {
+  padding: 0.9rem 1.6rem;
+  font-size: 0.95rem;
+}
+
+/* La línea de tags vive fuera del bloque de ancho limitado (27rem) para
+   poder mantenerse en un solo renglón mientras haya espacio disponible
+   en la columna de texto. */
+.hero__tags {
+  margin-top: clamp(0.75rem, 1.8vh, var(--sp-6));
+  font-size: clamp(0.72rem, 1.1vw, var(--fs-small));
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  white-space: nowrap;
+}
+
+/* Visual: columna propia, con su propio espacio — nunca se superpone
+   al texto porque vive en su propia celda del grid. */
+
+.hero__visual {
+  position: relative;
+  min-width: 0;
+  width: min(100%, 21rem);
+  margin-inline: auto;
+}
+
+.hero__connector {
+  position: absolute;
+  top: -1.8rem;
+  left: -2.2rem;
+  width: 3.2rem;
+  height: 2.4rem;
+  border-left: 1px solid var(--color-accent);
+  border-top: 1px solid var(--color-accent);
+  border-top-left-radius: var(--radius-m);
+  opacity: 0.5;
+}
+
+.mockup-browser {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  border-radius: var(--radius-m);
+  box-shadow: 0 30px 60px -25px rgba(20, 20, 20, 0.35);
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+}
+
+.mockup-browser__bar {
+  display: flex;
+  gap: 6px;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.mockup-browser__bar span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-line);
+}
+
+.mockup-browser__body {
+  padding: var(--sp-4);
+}
+
+.mockup-browser__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-4);
+}
+
+.mockup-browser__brand {
+  width: 3.6rem;
+  height: 0.5rem;
+  background: var(--color-ink);
+  border-radius: 2px;
+}
+
+.mockup-browser__links {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.mockup-browser__links span {
+  width: 1.8rem;
+  height: 0.35rem;
+  border-radius: 2px;
+  background: var(--color-line);
+}
+
+.mockup-browser__title {
+  width: 85%;
+  height: 0.85rem;
+  border-radius: 2px;
+  background: var(--color-ink);
+  margin-bottom: var(--sp-2);
+}
+
+.mockup-browser__title--short {
+  width: 55%;
+  background: var(--color-accent);
+  margin-bottom: var(--sp-4);
+}
+
+.mockup-browser__btn {
+  width: 6rem;
+  height: 1.6rem;
+  border-radius: var(--radius-s);
+  background: var(--color-ink);
+}
+
+/* El teléfono se apoya sobre el borde del navegador pero queda contenido
+   dentro de la misma columna visual — no invade la columna de texto. */
+.mockup-phone {
+  position: relative;
+  margin: -2.4rem auto 0;
+  margin-left: auto;
+  margin-right: 8%;
+  width: 6.6rem;
+  aspect-ratio: 9 / 18.5;
+  background: var(--color-ink);
+  border-radius: 1.3rem;
+  padding: 0.38rem;
+  box-shadow: 0 22px 32px -16px rgba(20, 20, 20, 0.45);
+}
+
+.mockup-phone__notch {
+  width: 1.7rem;
+  height: 0.26rem;
+  background: var(--color-ink);
+  border-radius: 4px;
+  margin: 0.22rem auto 0.28rem;
+}
+
+.mockup-phone__screen {
+  height: calc(100% - 0.75rem);
+  background: var(--color-bg);
+  border-radius: 0.95rem;
+  padding: var(--sp-2);
+}
+
+.mockup-phone__row {
+  width: 60%;
+  height: 0.32rem;
+  background: var(--color-ink);
+  border-radius: 2px;
+  margin-bottom: var(--sp-2);
+}
+
+.mockup-phone__card {
+  width: 100%;
+  height: 2.7rem;
+  background: var(--color-accent-soft);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-s);
+  margin-bottom: var(--sp-2);
+}
+
+.mockup-phone__line {
+  width: 100%;
+  height: 0.28rem;
+  border-radius: 2px;
+  background: var(--color-line);
+  margin-bottom: var(--sp-1);
+}
+
+.mockup-phone__line--short {
+  width: 40%;
+}
+
+@media (max-width: 1080px) {
+  .hero {
+    min-height: auto;
+    padding-block: var(--sp-16) var(--sp-8);
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__word--huge {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+  }
+
+  .hero__word--accent {
+    font-size: clamp(2.6rem, 13vw, 4.3rem);
+  }
+
+  .hero__word--medium {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+  }
+
+  .hero__word--small {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+  }
+
+  .hero__visual {
+    margin-top: var(--sp-12);
+  }
+
+  .hero__connector {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  /* Si en pantallas muy angostas la línea de tags no entra en un
+     renglón, se le permite envolver en vez de generar overflow. */
+  .hero__tags {
+    white-space: normal;
+    line-height: 1.4;
+  }
+}

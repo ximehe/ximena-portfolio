@@ -1,0 +1,124 @@
+.benefits {
+  padding-block: clamp(4rem, 10vh, 8rem);
+}
+
+.benefits__grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--sp-16);
+  align-items: start;
+}
+
+/* Frase introductoria: mismo lenguaje tipográfico del Hero pero sin
+   competir con él — sin mayúsculas, escala más contenida. */
+
+.benefits__intro {
+  position: sticky;
+  top: calc(var(--header-h) + var(--sp-8));
+}
+
+.benefits__phrase {
+  margin-top: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  font-size: clamp(2.1rem, 4.6vw, 3.75rem);
+}
+
+.benefits__phrase-line {
+  display: block;
+}
+
+.benefits__phrase-accent {
+  color: var(--color-accent);
+}
+
+/* Beneficios: piezas editoriales, no cards */
+
+.benefits__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.benefits__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--sp-8);
+  padding-block: clamp(1.75rem, 4vh, 2.75rem);
+  border-top: 1px solid var(--color-line);
+}
+
+.benefits__item:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.benefits__item:nth-child(2n) {
+  margin-left: clamp(0px, 6vw, 4rem);
+}
+
+.benefits__number {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-ink);
+  transition: -webkit-text-stroke-color var(--dur-base) var(--ease-out);
+}
+
+.benefits__item:hover .benefits__number {
+  -webkit-text-stroke-color: var(--color-accent);
+}
+
+.benefits__item-copy {
+  max-width: 26rem;
+  padding-top: 0.4em;
+}
+
+.benefits__item-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  margin-bottom: var(--sp-2);
+}
+
+.benefits__item-text {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+@media (max-width: 1080px) {
+  .benefits__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-12);
+  }
+
+  .benefits__intro {
+    position: static;
+  }
+}
+
+@media (max-width: 620px) {
+  .benefits {
+    padding-block: var(--sp-16);
+  }
+
+  .benefits__item {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
+
+  .benefits__item:nth-child(2n) {
+    margin-left: 0;
+  }
+
+  .benefits__number {
+    font-size: 2.6rem;
+  }
+}
