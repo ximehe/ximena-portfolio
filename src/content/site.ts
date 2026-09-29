@@ -187,7 +187,7 @@ export const featuredProject = {
   year: "2026",
   imageSrc: magnoliasDesktop,
   imageAlt: "Tienda online de Magnolias Cotillón en versión escritorio",
-  liveUrl: "https://wwww.magnoliascotillon.com",
+  liveUrl: "https://www.magnoliascotillon.com",
 };
 
 export const about = {
