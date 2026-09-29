@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./Benefits.css";
 
 export function Benefits() {
-  const scopeRef = useReveal<HTMLDivElement>();
+  const scopeRef = useReveal<HTMLElement>();
   const [activeBenefit, setActiveBenefit] = useState<string | null>(null);
 
   function toggleBenefit(number: string) {
@@ -14,7 +14,11 @@ export function Benefits() {
   }
 
   return (
-    <section id="beneficios" className="benefits" ref={scopeRef}>
+    <section
+      id="beneficios"
+      className="benefits"
+      ref={scopeRef}
+    >
       <div className="container">
         <div className="benefits__intro">
           <p className="eyebrow" data-reveal>
@@ -27,7 +31,9 @@ export function Benefits() {
                 key={line.text}
                 className="benefits__phrase-line"
                 data-reveal
-                style={{ transitionDelay: `${index * 80}ms` }}
+                style={{
+                  transitionDelay: `${index * 80}ms`,
+                }}
               >
                 {line.text}
 
