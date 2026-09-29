@@ -63,7 +63,7 @@ export function Header() {
         >
           <span>Hablemos</span>
           <span className="header__cta-arrow" aria-hidden="true">
-            ↗
+            ↗︎
           </span>
         </a>
 
@@ -108,7 +108,7 @@ export function Header() {
                       className="header__mobile-arrow"
                       aria-hidden="true"
                     >
-                      ↗
+                      ↗︎
                     </span>
                   </a>
                 </li>
@@ -122,7 +122,7 @@ export function Header() {
             onClick={handleLinkClick}
           >
             <span>Hablemos sobre tu proyecto</span>
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">↗︎</span>
           </a>
         </div>
       </div>
