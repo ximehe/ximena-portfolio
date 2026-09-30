@@ -8,10 +8,13 @@ import { Process } from "./components/Process";
 import { Pricing } from "./components/Pricing";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
+import BackgroundDecor from "./components/BackgroundDecor/BackgroundDecor";
 
 function App() {
   return (
     <>
+    <BackgroundDecor />
+
       <Header />
       <main>
         <Hero />

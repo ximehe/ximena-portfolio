@@ -11,44 +11,52 @@ html {
 body {
   margin: 0;
   background-color: var(--color-bg);
+
   background-image:
-    /* Halo celeste superior izquierdo */
+    /* Glow azul principal */
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(43, 77, 255, 0.12),
+      transparent 38rem
+    ),
+
+    /* Glow azul superior izquierdo */
     radial-gradient(
       circle at 8% 8%,
       rgba(215, 230, 242, 0.72),
       transparent 24rem
     ),
 
-    /* Halo celeste lateral */
+    /* Glow azul lateral */
     radial-gradient(
       circle at 94% 36%,
-      rgba(215, 230, 242, 0.48),
+      rgba(215, 230, 242, 0.42),
       transparent 30rem
     ),
 
-    /* Halo inferior */
+    /* Glow inferior */
     radial-gradient(
       circle at 22% 88%,
-      rgba(215, 230, 242, 0.4),
+      rgba(215, 230, 242, 0.34),
       transparent 27rem
     ),
 
     /* Retícula horizontal */
     linear-gradient(
-      rgba(20, 20, 20, 0.028) 1px,
+      rgba(30, 60, 140, 0.045) 1px,
       transparent 1px
     ),
 
     /* Retícula vertical */
     linear-gradient(
       90deg,
-      rgba(20, 20, 20, 0.028) 1px,
+      rgba(30, 60, 140, 0.045) 1px,
       transparent 1px
     ),
 
     /* Micro puntos */
     radial-gradient(
-      rgba(20, 20, 20, 0.055) 0.55px,
+      rgba(43, 77, 255, 0.07) 0.55px,
       transparent 0.7px
     );
 
@@ -56,11 +64,13 @@ body {
     auto,
     auto,
     auto,
-    88px 88px,
-    88px 88px,
+    auto,
+    44px 44px,
+    44px 44px,
     7px 7px;
 
   background-attachment:
+    fixed,
     fixed,
     fixed,
     fixed,
@@ -75,6 +85,8 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  position: relative;
 }
 
 h1,
@@ -205,9 +217,409 @@ ul {
   background: var(--color-accent-soft);
 }
 
+/* =========================================================
+   GLOBAL DECORATIVE SYSTEM
+   ========================================================= */
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Línea técnica vertical sutil */
+body::before {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(100% - 1px),
+      rgba(43, 77, 255, 0.06) 100%
+    )
+    8% 0 / 1px 100% no-repeat;
+}
+
+/* Halo ambiental */
+body::after {
+  background:
+    radial-gradient(
+      circle at 82% 12%,
+      rgba(43, 77, 255, 0.045),
+      transparent 14rem
+    ),
+    radial-gradient(
+      circle at 12% 62%,
+      rgba(215, 230, 242, 0.16),
+      transparent 18rem
+    );
+
+  animation: ambientGlow 12s ease-in-out infinite alternate;
+}
+
+@keyframes ambientGlow {
+  from {
+    opacity: 0.7;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   BACKGROUND DECOR
+   ========================================================= */
+
+.background-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.decor {
+  position: absolute;
+  color: var(--color-accent);
+  user-select: none;
+}
+
+/* =========================================================
+   PLUS
+   ========================================================= */
+
+.decor-plus {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  opacity: 0.58;
+
+  animation: decorPulse 5s ease-in-out infinite;
+}
+
+
+.decor-plus-1 {
+  top: 8%;
+  left: 8%;
+}
+
+.decor-plus-2 {
+  top: 21%;
+  right: 12%;
+}
+
+.decor-plus-3 {
+  top: 36%;
+  left: 18%;
+}
+
+.decor-plus-4 {
+  top: 52%;
+  right: 8%;
+}
+
+.decor-plus-5 {
+  top: 69%;
+  left: 10%;
+}
+
+.decor-plus-6 {
+  top: 87%;
+  right: 20%;
+}
+
+.decor-plus-7 {
+  top: 14%;
+  right: 42%;
+  animation-delay: 1s;
+}
+
+.decor-plus-8 {
+  top: 31%;
+  left: 35%;
+  animation-delay: 2s;
+}
+
+.decor-plus-9 {
+  top: 44%;
+  right: 43%;
+  animation-delay: 3s;
+}
+
+.decor-plus-10 {
+  top: 62%;
+  left: 39%;
+  animation-delay: 4s;
+}
+
+.decor-plus-11 {
+  top: 77%;
+  right: 38%;
+  animation-delay: 2.5s;
+}
+
+.decor-plus-12 {
+  top: 94%;
+  left: 43%;
+  animation-delay: 1.5s;
+}
+
+/* =========================================================
+   DESTELLOS
+   ========================================================= */
+
+.decor-star {
+  color: var(--color-accent);
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.55;
+
+  animation: decorPulse 6s ease-in-out infinite;
+}
+
+.decor-star-1 {
+  top: 11%;
+  right: 27%;
+}
+
+.decor-star-2 {
+  top: 27%;
+  left: 6%;
+  animation-delay: 1.5s;
+}
+
+.decor-star-3 {
+  top: 45%;
+  right: 20%;
+  animation-delay: 3s;
+}
+
+.decor-star-4 {
+  top: 60%;
+  left: 25%;
+  animation-delay: 4s;
+}
+
+.decor-star-5 {
+  top: 76%;
+  right: 9%;
+  animation-delay: 2s;
+}
+
+.decor-star-6 {
+  top: 91%;
+  left: 17%;
+  animation-delay: 3.5s;
+}
+
+.decor-star-7 {
+  top: 18%;
+  left: 44%;
+  animation-delay: 1s;
+}
+
+.decor-star-8 {
+  top: 39%;
+  right: 37%;
+  animation-delay: 2.5s;
+}
+
+.decor-star-9 {
+  top: 56%;
+  left: 43%;
+  animation-delay: 4s;
+}
+
+.decor-star-10 {
+  top: 72%;
+  right: 34%;
+  animation-delay: 1.5s;
+}
+
+.decor-star-11 {
+  top: 84%;
+  left: 38%;
+  animation-delay: 3s;
+}
+
+.decor-star-12 {
+  top: 97%;
+  right: 43%;
+  animation-delay: 2s;
+}
+/* =========================================================
+   PUNTOS
+   ========================================================= */
+
+.decor-dot {
+  color: var(--color-accent);
+  font-size: 1.8rem;
+  line-height: 1;
+  font-weight: 700;
+  opacity: 0.62;
+}
+
+.decor-dot-1 {
+  top: 10%;
+  left: 22%;
+}
+
+.decor-dot-2 {
+  top: 23%;
+  right: 6%;
+}
+
+.decor-dot-3 {
+  top: 34%;
+  left: 9%;
+}
+
+.decor-dot-4 {
+  top: 48%;
+  right: 31%;
+}
+
+.decor-dot-5 {
+  top: 57%;
+  left: 6%;
+}
+
+.decor-dot-6 {
+  top: 68%;
+  right: 25%;
+}
+
+.decor-dot-7 {
+  top: 81%;
+  left: 30%;
+}
+
+.decor-dot-8 {
+  top: 94%;
+  right: 7%;
+}
+
+.decor-dot-9 {
+  top: 17%;
+  left: 38%;
+}
+
+.decor-dot-10 {
+  top: 29%;
+  right: 30%;
+}
+
+.decor-dot-11 {
+  top: 42%;
+  left: 31%;
+}
+
+.decor-dot-12 {
+  top: 53%;
+  right: 45%;
+}
+
+.decor-dot-13 {
+  top: 66%;
+  left: 44%;
+}
+
+.decor-dot-14 {
+  top: 74%;
+  right: 40%;
+}
+
+.decor-dot-15 {
+  top: 86%;
+  left: 48%;
+}
+
+.decor-dot-16 {
+  top: 96%;
+  right: 27%;
+}
+
+/* =========================================================
+   CUADRADOS
+   ========================================================= */
+
+.decor-square {
+  width: 9px;
+  height: 9px;
+
+  border: 1.5px solid var(--color-accent);
+
+  opacity: 0.52;
+}
+
+.decor-square-1 {
+  top: 19%;
+  left: 15%;
+}
+
+.decor-square-2 {
+  top: 34%;
+  right: 17%;
+}
+
+.decor-square-3 {
+  top: 51%;
+  left: 14%;
+}
+
+.decor-square-4 {
+  top: 65%;
+  right: 13%;
+}
+
+.decor-square-5 {
+  top: 79%;
+  left: 8%;
+}
+
+.decor-square-6 {
+  top: 90%;
+  right: 28%;
+}
+
+.decor-square-7 {
+  top: 28%;
+  left: 47%;
+}
+
+.decor-square-8 {
+  top: 73%;
+  right: 47%;
+}
+/* =========================================================
+   ANIMACIÓN
+   ========================================================= */
+
+@keyframes decorPulse {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
 @media (max-width: 700px) {
   body {
     background-size:
+      auto,
       auto,
       auto,
       auto,
@@ -216,6 +628,10 @@ ul {
       7px 7px;
   }
 }
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   html {
