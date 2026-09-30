@@ -303,67 +303,67 @@ body::after {
 
 
 .decor-plus-1 {
-  top: 8%;
+  top: 60vh;
   left: 8%;
 }
 
 .decor-plus-2 {
-  top: 21%;
+  top: 150vh;
   right: 12%;
 }
 
 .decor-plus-3 {
-  top: 36%;
+  top: 250vh;
   left: 18%;
 }
 
 .decor-plus-4 {
-  top: 52%;
+  top: 360vh;
   right: 8%;
 }
 
 .decor-plus-5 {
-  top: 69%;
+  top: 470vh;
   left: 10%;
 }
 
 .decor-plus-6 {
-  top: 87%;
+  top: 590vh;
   right: 20%;
 }
 
 .decor-plus-7 {
-  top: 14%;
+  top: 105vh;
   right: 42%;
   animation-delay: 1s;
 }
 
 .decor-plus-8 {
-  top: 31%;
+  top: 215vh;
   left: 35%;
   animation-delay: 2s;
 }
 
 .decor-plus-9 {
-  top: 44%;
+  top: 305vh;
   right: 43%;
   animation-delay: 3s;
 }
 
 .decor-plus-10 {
-  top: 62%;
+  top: 415vh;
   left: 39%;
   animation-delay: 4s;
 }
 
 .decor-plus-11 {
-  top: 77%;
+  top: 525vh;
   right: 38%;
   animation-delay: 2.5s;
 }
 
 .decor-plus-12 {
-  top: 94%;
+  top: 650vh;
   left: 43%;
   animation-delay: 1.5s;
 }
@@ -382,75 +382,76 @@ body::after {
 }
 
 .decor-star-1 {
-  top: 11%;
+  top: 80vh;
   right: 27%;
 }
 
 .decor-star-2 {
-  top: 27%;
+  top: 180vh;
   left: 6%;
   animation-delay: 1.5s;
 }
 
 .decor-star-3 {
-  top: 45%;
+  top: 315vh;
   right: 20%;
   animation-delay: 3s;
 }
 
 .decor-star-4 {
-  top: 60%;
+  top: 420vh;
   left: 25%;
   animation-delay: 4s;
 }
 
 .decor-star-5 {
-  top: 76%;
+  top: 510vh;
   right: 9%;
   animation-delay: 2s;
 }
 
 .decor-star-6 {
-  top: 91%;
+  top: 610vh;
   left: 17%;
   animation-delay: 3.5s;
 }
 
 .decor-star-7 {
-  top: 18%;
+  top: 125vh;
   left: 44%;
   animation-delay: 1s;
 }
 
 .decor-star-8 {
-  top: 39%;
+  top: 275vh;
   right: 37%;
   animation-delay: 2.5s;
 }
 
 .decor-star-9 {
-  top: 56%;
+  top: 390vh;
   left: 43%;
   animation-delay: 4s;
 }
 
 .decor-star-10 {
-  top: 72%;
+  top: 485vh;
   right: 34%;
   animation-delay: 1.5s;
 }
 
 .decor-star-11 {
-  top: 84%;
+  top: 550vh;
   left: 38%;
   animation-delay: 3s;
 }
 
 .decor-star-12 {
-  top: 97%;
+  top: 680vh;
   right: 43%;
   animation-delay: 2s;
 }
+
 /* =========================================================
    PUNTOS
    ========================================================= */
@@ -464,85 +465,84 @@ body::after {
 }
 
 .decor-dot-1 {
-  top: 10%;
+  top: 70vh;
   left: 22%;
 }
 
 .decor-dot-2 {
-  top: 23%;
+  top: 160vh;
   right: 6%;
 }
 
 .decor-dot-3 {
-  top: 34%;
+  top: 230vh;
   left: 9%;
 }
 
 .decor-dot-4 {
-  top: 48%;
+  top: 330vh;
   right: 31%;
 }
 
 .decor-dot-5 {
-  top: 57%;
+  top: 405vh;
   left: 6%;
 }
 
 .decor-dot-6 {
-  top: 68%;
+  top: 455vh;
   right: 25%;
 }
 
 .decor-dot-7 {
-  top: 81%;
+  top: 535vh;
   left: 30%;
 }
 
 .decor-dot-8 {
-  top: 94%;
+  top: 625vh;
   right: 7%;
 }
 
 .decor-dot-9 {
-  top: 17%;
+  top: 135vh;
   left: 38%;
 }
 
 .decor-dot-10 {
-  top: 29%;
+  top: 195vh;
   right: 30%;
 }
 
 .decor-dot-11 {
-  top: 42%;
+  top: 290vh;
   left: 31%;
 }
 
 .decor-dot-12 {
-  top: 53%;
+  top: 375vh;
   right: 45%;
 }
 
 .decor-dot-13 {
-  top: 66%;
+  top: 445vh;
   left: 44%;
 }
 
 .decor-dot-14 {
-  top: 74%;
+  top: 500vh;
   right: 40%;
 }
 
 .decor-dot-15 {
-  top: 86%;
+  top: 575vh;
   left: 48%;
 }
 
 .decor-dot-16 {
-  top: 96%;
+  top: 665vh;
   right: 27%;
 }
-
 /* =========================================================
    CUADRADOS
    ========================================================= */
@@ -557,44 +557,45 @@ body::after {
 }
 
 .decor-square-1 {
-  top: 19%;
+  top: 115vh;
   left: 15%;
 }
 
 .decor-square-2 {
-  top: 34%;
+  top: 245vh;
   right: 17%;
 }
 
 .decor-square-3 {
-  top: 51%;
+  top: 350vh;
   left: 14%;
 }
 
 .decor-square-4 {
-  top: 65%;
+  top: 430vh;
   right: 13%;
 }
 
 .decor-square-5 {
-  top: 79%;
+  top: 555vh;
   left: 8%;
 }
 
 .decor-square-6 {
-  top: 90%;
+  top: 620vh;
   right: 28%;
 }
 
 .decor-square-7 {
-  top: 28%;
+  top: 200vh;
   left: 47%;
 }
 
 .decor-square-8 {
-  top: 73%;
+  top: 480vh;
   right: 47%;
 }
+
 /* =========================================================
    ANIMACIÓN
    ========================================================= */
@@ -627,7 +628,31 @@ body::after {
       64px 64px,
       7px 7px;
   }
+
+  /* Menos decoración en mobile para mantener aire visual */
+  .background-decor .decor {
+    display: none;
+  }
+
+  .background-decor .decor:nth-child(2),
+  .background-decor .decor:nth-child(5),
+  .background-decor .decor:nth-child(8),
+  .background-decor .decor:nth-child(11),
+  .background-decor .decor:nth-child(14),
+  .background-decor .decor:nth-child(18),
+  .background-decor .decor:nth-child(22),
+  .background-decor .decor:nth-child(27),
+  .background-decor .decor:nth-child(32),
+  .background-decor .decor:nth-child(37),
+  .background-decor .decor:nth-child(42),
+  .background-decor .decor:nth-child(47),
+  .background-decor .decor:nth-child(50),
+  .background-decor .decor:nth-child(54),
+  .background-decor .decor:nth-child(58) {
+    display: block;
+  }
 }
+
 
 /* =========================================================
    REDUCED MOTION
