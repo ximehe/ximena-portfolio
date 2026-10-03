@@ -15,7 +15,7 @@ export function Footer() {
 
             <div className="footer__socials">
               <a
-                href="https://www.instagram.com/ximeheernandez/"
+                href="https://www.instagram.com/xime.dev/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram de XimeDev"
