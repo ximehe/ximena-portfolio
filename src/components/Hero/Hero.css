@@ -113,6 +113,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  --hero-tilt-x: 0deg;
+  --hero-tilt-y: 0deg;
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 
@@ -204,7 +209,13 @@
 .device-laptop {
   position: relative;
   width: min(100%, 35rem);
-  transform: translateX(-1rem);
+  transform:
+    translateX(-1rem)
+    rotateX(var(--hero-tilt-x))
+    rotateY(var(--hero-tilt-y));
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform;
   z-index: 1;
 }
 
@@ -292,7 +303,14 @@
   box-shadow:
     0 28px 45px -18px rgba(20, 20, 20, 0.5),
     0 8px 18px -10px rgba(20, 20, 20, 0.3);
-  transform: rotate(2deg);
+  transform:
+    translateZ(45px)
+    rotate(2deg)
+    rotateX(calc(var(--hero-tilt-x) * 1.25))
+    rotateY(calc(var(--hero-tilt-y) * 1.35));
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform;
   z-index: 3;
 }
 
@@ -364,6 +382,7 @@
    TABLET
    ========================================================= */
 
+
 @media (max-width: 1080px) {
   .hero {
     min-height: auto;
@@ -391,29 +410,23 @@
     font-size: clamp(1.2rem, 5vw, 1.8rem);
   }
 
-  .hero__visual {
-    width: min(100%, 42rem);
-    min-height: 27rem;
-    margin-top: var(--sp-4);
-  }
-
   .hero__connector {
     display: none;
   }
 
   .device-laptop {
     width: min(100%, 36rem);
-    transform: translateX(-0.75rem);
-  }
-
-  .device-phone {
-    right: 0;
+    transform:
+      translateX(-0.75rem)
+      rotateX(var(--hero-tilt-x))
+      rotateY(var(--hero-tilt-y));
   }
 
   .hero__project-label {
     left: 2%;
   }
 }
+
 
 /* =========================================================
    MOBILE
@@ -445,9 +458,12 @@
   }
 
   .device-laptop {
-    width: 92%;
-    transform: translateX(-2%);
-  }
+  width: 92%;
+  transform:
+    translateX(-2%)
+    rotateX(var(--hero-tilt-x))
+    rotateY(var(--hero-tilt-y));
+}
 
   .device-laptop__screen {
     padding: 0.42rem;

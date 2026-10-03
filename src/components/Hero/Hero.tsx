@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useReveal } from "../../hooks/useReveal";
 import { hero } from "../../content/site";
 import magnoliasDesktop from "../../assets/projects/magnolias-desktop.png";
@@ -6,6 +7,95 @@ import "./Hero.css";
 
 export function Hero() {
   const scopeRef = useReveal<HTMLDivElement>();
+  const visualRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const visual = visualRef.current;
+
+    if (!visual) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    if (reducedMotion.matches) {
+      return;
+    }
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let animationFrame = 0;
+
+    const update = () => {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      visual.style.setProperty(
+        "--hero-tilt-x",
+        `${currentY.toFixed(3)}deg`
+      );
+
+      visual.style.setProperty(
+        "--hero-tilt-y",
+        `${currentX.toFixed(3)}deg`
+      );
+
+      animationFrame = requestAnimationFrame(update);
+    };
+
+    const finePointer = window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    );
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const rect = visual.getBoundingClientRect();
+
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+
+      targetX = (x - 0.5) * 10;
+      targetY = (y - 0.5) * -7;
+    };
+
+    const handlePointerLeave = () => {
+      targetX = 0;
+      targetY = 0;
+    };
+
+    const handleDeviceOrientation = (event: DeviceOrientationEvent) => {
+      if (event.gamma === null || event.beta === null) return;
+
+      const gamma = Math.max(-30, Math.min(30, event.gamma));
+      const beta = Math.max(-30, Math.min(30, event.beta));
+
+      targetX = (gamma / 30) * 4;
+      targetY = (beta / 30) * -3;
+    };
+
+    if (finePointer.matches) {
+      visual.addEventListener("pointermove", handlePointerMove);
+      visual.addEventListener("pointerleave", handlePointerLeave);
+    } else {
+      window.addEventListener(
+        "deviceorientation",
+        handleDeviceOrientation
+      );
+    }
+
+    animationFrame = requestAnimationFrame(update);
+
+    return () => {
+      visual.removeEventListener("pointermove", handlePointerMove);
+      visual.removeEventListener("pointerleave", handlePointerLeave);
+      window.removeEventListener(
+        "deviceorientation",
+        handleDeviceOrientation
+      );
+      cancelAnimationFrame(animationFrame);
+    };
+  }, []);
 
   return (
     <section id="top" className="hero" ref={scopeRef}>
@@ -48,25 +138,26 @@ export function Hero() {
         </div>
 
         <div
+          ref={visualRef}
           className="hero__visual"
           aria-label="Vista del proyecto Magnolias Cotillón en escritorio y mobile"
           data-reveal
           style={{ transitionDelay: "220ms" }}
         >
-          {/* Detalle editorial */}
           <div className="hero__meta" aria-hidden="true">
             <span>WEB</span>
             <span>2026</span>
           </div>
 
-          {/* Detalle técnico */}
-          <span className="hero__cross hero__cross--top" aria-hidden="true">
+          <span
+            className="hero__cross hero__cross--top"
+            aria-hidden="true"
+          >
             +
           </span>
 
           <div className="hero__connector" aria-hidden="true" />
 
-          {/* Pantalla de escritorio */}
           <div className="device-laptop">
             <div className="device-laptop__screen">
               <div className="device-laptop__bezel">
@@ -84,7 +175,6 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Teléfono mobile */}
           <div className="device-phone">
             <div className="device-phone__speaker" />
 
@@ -105,3 +195,4 @@ export function Hero() {
     </section>
   );
 }
+
