@@ -116,58 +116,37 @@ export function Hero() {
   }, []);
 
   const handleEnableMotion = async () => {
-    try {
-      const DeviceOrientationEventClass =
-        window.DeviceOrientationEvent;
-
-      if (
-        "requestPermission" in DeviceOrientationEventClass &&
-        typeof DeviceOrientationEventClass.requestPermission ===
-          "function"
-      ) {
-        const permission =
-          await DeviceOrientationEventClass.requestPermission();
-
-        if (permission !== "granted") {
-          return;
-        }
-      }
-
-      const visual = visualRef.current;
-
-      if (!visual) return;
-
-      const handleDeviceOrientation = (
-        event: DeviceOrientationEvent
-      ) => {
-        if (event.gamma === null || event.beta === null) {
-          return;
-        }
-
-        const gamma = Math.max(-30, Math.min(30, event.gamma));
-        const beta = Math.max(-30, Math.min(30, event.beta));
-
-        visual.style.setProperty(
-          "--hero-tilt-y",
-          `${((gamma / 30) * 4).toFixed(3)}deg`
-        );
-
-        visual.style.setProperty(
-          "--hero-tilt-x",
-          `${((beta / 30) * -3).toFixed(3)}deg`
-        );
+  try {
+    const DeviceOrientationEventClass =
+      window.DeviceOrientationEvent as typeof DeviceOrientationEvent & {
+        requestPermission?: () => Promise<"granted" | "denied">;
       };
 
-      window.addEventListener(
-        "deviceorientation",
-        handleDeviceOrientation
-      );
+    if (typeof DeviceOrientationEventClass.requestPermission === "function") {
+      const permission =
+        await DeviceOrientationEventClass.requestPermission();
 
-      setShowMotionButton(false);
-    } catch {
-      setShowMotionButton(false);
+      alert(`Permiso: ${permission}`);
+
+      if (permission !== "granted") {
+        return;
+      }
+    } else {
+      alert("requestPermission no está disponible");
+      return;
     }
-  };
+
+    setShowMotionButton(false);
+  } catch (error) {
+    alert(
+      `Error: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
+
+    console.error("Error al activar movimiento:", error);
+  }
+};
 
   return (
     <section id="top" className="hero" ref={scopeRef}>
