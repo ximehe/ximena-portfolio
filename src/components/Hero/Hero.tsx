@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReveal } from "../../hooks/useReveal";
 import { hero } from "../../content/site";
 import magnoliasDesktop from "../../assets/projects/magnolias-desktop.png";
@@ -8,6 +8,7 @@ import "./Hero.css";
 export function Hero() {
   const scopeRef = useReveal<HTMLDivElement>();
   const visualRef = useRef<HTMLDivElement>(null);
+  const [showMotionButton, setShowMotionButton] = useState(false);
 
   useEffect(() => {
     const visual = visualRef.current;
@@ -21,6 +22,10 @@ export function Hero() {
     if (reducedMotion.matches) {
       return;
     }
+
+    const finePointer = window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    );
 
     let targetX = 0;
     let targetY = 0;
@@ -45,10 +50,6 @@ export function Hero() {
       animationFrame = requestAnimationFrame(update);
     };
 
-    const finePointer = window.matchMedia(
-      "(hover: hover) and (pointer: fine)"
-    );
-
     const handlePointerMove = (event: PointerEvent) => {
       const rect = visual.getBoundingClientRect();
 
@@ -64,8 +65,12 @@ export function Hero() {
       targetY = 0;
     };
 
-    const handleDeviceOrientation = (event: DeviceOrientationEvent) => {
-      if (event.gamma === null || event.beta === null) return;
+    const handleDeviceOrientation = (
+      event: DeviceOrientationEvent
+    ) => {
+      if (event.gamma === null || event.beta === null) {
+        return;
+      }
 
       const gamma = Math.max(-30, Math.min(30, event.gamma));
       const beta = Math.max(-30, Math.min(30, event.beta));
@@ -78,10 +83,21 @@ export function Hero() {
       visual.addEventListener("pointermove", handlePointerMove);
       visual.addEventListener("pointerleave", handlePointerLeave);
     } else {
-      window.addEventListener(
-        "deviceorientation",
-        handleDeviceOrientation
-      );
+      const DeviceOrientationEventClass =
+        window.DeviceOrientationEvent;
+
+      const requiresPermission =
+        typeof DeviceOrientationEventClass !== "undefined" &&
+        "requestPermission" in DeviceOrientationEventClass;
+
+      if (requiresPermission) {
+        setShowMotionButton(true);
+      } else {
+        window.addEventListener(
+          "deviceorientation",
+          handleDeviceOrientation
+        );
+      }
     }
 
     animationFrame = requestAnimationFrame(update);
@@ -89,13 +105,69 @@ export function Hero() {
     return () => {
       visual.removeEventListener("pointermove", handlePointerMove);
       visual.removeEventListener("pointerleave", handlePointerLeave);
+
       window.removeEventListener(
         "deviceorientation",
         handleDeviceOrientation
       );
+
       cancelAnimationFrame(animationFrame);
     };
   }, []);
+
+  const handleEnableMotion = async () => {
+    try {
+      const DeviceOrientationEventClass =
+        window.DeviceOrientationEvent;
+
+      if (
+        "requestPermission" in DeviceOrientationEventClass &&
+        typeof DeviceOrientationEventClass.requestPermission ===
+          "function"
+      ) {
+        const permission =
+          await DeviceOrientationEventClass.requestPermission();
+
+        if (permission !== "granted") {
+          return;
+        }
+      }
+
+      const visual = visualRef.current;
+
+      if (!visual) return;
+
+      const handleDeviceOrientation = (
+        event: DeviceOrientationEvent
+      ) => {
+        if (event.gamma === null || event.beta === null) {
+          return;
+        }
+
+        const gamma = Math.max(-30, Math.min(30, event.gamma));
+        const beta = Math.max(-30, Math.min(30, event.beta));
+
+        visual.style.setProperty(
+          "--hero-tilt-y",
+          `${((gamma / 30) * 4).toFixed(3)}deg`
+        );
+
+        visual.style.setProperty(
+          "--hero-tilt-x",
+          `${((beta / 30) * -3).toFixed(3)}deg`
+        );
+      };
+
+      window.addEventListener(
+        "deviceorientation",
+        handleDeviceOrientation
+      );
+
+      setShowMotionButton(false);
+    } catch {
+      setShowMotionButton(false);
+    }
+  };
 
   return (
     <section id="top" className="hero" ref={scopeRef}>
@@ -186,6 +258,16 @@ export function Hero() {
             </div>
           </div>
 
+          {showMotionButton && (
+            <button
+              type="button"
+              className="hero__motion-button"
+              onClick={handleEnableMotion}
+            >
+              Activar movimiento
+            </button>
+          )}
+
           <div className="hero__project-label">
             <span className="hero__project-label-dot" />
             <span>Proyecto real · Magnolias Cotillón</span>
@@ -195,4 +277,3 @@ export function Hero() {
     </section>
   );
 }
-
