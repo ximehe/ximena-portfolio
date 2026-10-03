@@ -37,6 +37,39 @@
 }
 
 /* =========================================================
+   SOCIAL
+   ========================================================= */
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.footer__socials a {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    transform 300ms var(--ease-out);
+}
+
+.footer__socials svg {
+   width: 1.35rem;
+  height: 1.35rem;
+}
+
+.footer__socials a:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
    NAVIGATION
    ========================================================= */
 
@@ -187,6 +220,10 @@
     font-size: 0.85rem;
   }
 
+  .footer__socials {
+    margin-top: 1.25rem;
+  }
+
   .footer__nav-label {
     margin-bottom: 1rem;
   }
@@ -206,3 +243,4 @@
     gap: 1rem;
   }
 }
+

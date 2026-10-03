@@ -12,6 +12,66 @@ export function Footer() {
             <p className="footer__tagline">
               {brand.tagline}
             </p>
+
+            <div className="footer__socials">
+              <a
+                href="https://www.instagram.com/ximeheernandez/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram de XimeDev"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  />
+                  <circle
+                    cx="17.5"
+                    cy="6.5"
+                    r="1"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/ximehernandez/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn de XimeDev"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 9v9M6 6v.01M10 18v-5.2c0-2 1.2-3.3 3-3.3s3 1.3 3 3.3V18M10 12c.5-1.5 1.5-2.5 3-2.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
 
           <nav
@@ -47,3 +107,4 @@ export function Footer() {
     </footer>
   );
 }
+
