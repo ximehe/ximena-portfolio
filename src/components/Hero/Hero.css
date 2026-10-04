@@ -116,13 +116,19 @@
 
   --hero-tilt-x: 0deg;
   --hero-tilt-y: 0deg;
+
   perspective: 1200px;
   transform-style: preserve-3d;
+
+  /* Permite el scroll vertical en móvil mientras
+     usamos el touch para controlar la inclinación. */
+  touch-action: pan-y;
 }
 
+/* =========================================================
+   CONECTOR
+   ========================================================= */
 
-/* Pequeño conector gráfico que mantiene el lenguaje visual
-   del mockup anterior. */
 .hero__connector {
   position: absolute;
   top: 1rem;
@@ -145,17 +151,14 @@
   top: -1.25rem;
   right: 0.5rem;
   z-index: 4;
-
   display: flex;
   align-items: center;
   gap: 0.8rem;
-
   font-family: var(--font-body);
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-
   color: var(--color-ink-faint);
 }
 
@@ -171,12 +174,10 @@
 .hero__cross {
   position: absolute;
   z-index: 4;
-
   font-family: var(--font-body);
   font-size: 1.15rem;
   font-weight: 300;
   line-height: 1;
-
   color: var(--color-accent);
   opacity: 0.55;
 }
@@ -186,22 +187,6 @@
   left: 1.5rem;
 }
 
-.hero__connector {
-  position: absolute;
-  top: 1rem;
-  left: -1.5rem;
-
-  width: 3.2rem;
-  height: 2.4rem;
-
-  border-left: 1px solid var(--color-accent);
-  border-top: 1px solid var(--color-accent);
-  border-top-left-radius: var(--radius-m);
-
-  opacity: 0.5;
-  z-index: 0;
-}
-
 /* =========================================================
    LAPTOP
    ========================================================= */
@@ -209,17 +194,21 @@
 .device-laptop {
   position: relative;
   width: min(100%, 35rem);
+
   transform:
     translateX(-1rem)
     rotateX(var(--hero-tilt-x))
     rotateY(var(--hero-tilt-y));
+
   transform-style: preserve-3d;
   transform-origin: center center;
   will-change: transform;
+
   z-index: 1;
 }
 
 /* Pantalla completa */
+
 .device-laptop__screen {
   position: relative;
   padding: 0.65rem;
@@ -231,6 +220,7 @@
 }
 
 /* Marco interno de la pantalla */
+
 .device-laptop__bezel {
   position: relative;
   overflow: hidden;
@@ -247,6 +237,7 @@
 }
 
 /* Cámara */
+
 .device-laptop__camera {
   position: absolute;
   top: 0.27rem;
@@ -259,6 +250,7 @@
 }
 
 /* Base de la laptop */
+
 .device-laptop__base {
   position: relative;
   width: 106%;
@@ -275,6 +267,7 @@
 }
 
 /* Bisagra */
+
 .device-laptop__hinge {
   position: absolute;
   left: 50%;
@@ -300,21 +293,26 @@
   background: #101010;
   border: 2px solid #282828;
   border-radius: 1.35rem;
+
   box-shadow:
     0 28px 45px -18px rgba(20, 20, 20, 0.5),
     0 8px 18px -10px rgba(20, 20, 20, 0.3);
+
   transform:
     translateZ(45px)
     rotate(2deg)
     rotateX(calc(var(--hero-tilt-x) * 1.25))
     rotateY(calc(var(--hero-tilt-y) * 1.35));
+
   transform-style: preserve-3d;
   transform-origin: center center;
   will-change: transform;
+
   z-index: 3;
 }
 
 /* Pantalla del teléfono */
+
 .device-phone__screen {
   position: relative;
   width: 100%;
@@ -326,6 +324,7 @@
 
 /* La captura ya tiene exactamente el formato de mobile,
    por eso se muestra completa dentro del teléfono. */
+
 .device-phone__screen img {
   display: block;
   width: 100%;
@@ -334,6 +333,7 @@
 }
 
 /* Notch / Dynamic Island */
+
 .device-phone__speaker {
   position: absolute;
   z-index: 2;
@@ -382,7 +382,6 @@
    TABLET
    ========================================================= */
 
-
 @media (max-width: 1080px) {
   .hero {
     min-height: auto;
@@ -416,6 +415,7 @@
 
   .device-laptop {
     width: min(100%, 36rem);
+
     transform:
       translateX(-0.75rem)
       rotateX(var(--hero-tilt-x))
@@ -425,8 +425,17 @@
   .hero__project-label {
     left: 2%;
   }
-}
 
+  .hero__meta {
+    top: -1rem;
+    right: 1rem;
+  }
+
+  .hero__cross--top {
+    top: 1.5rem;
+    left: 0.5rem;
+  }
+}
 
 /* =========================================================
    MOBILE
@@ -458,12 +467,13 @@
   }
 
   .device-laptop {
-  width: 92%;
-  transform:
-    translateX(-2%)
-    rotateX(var(--hero-tilt-x))
-    rotateY(var(--hero-tilt-y));
-}
+    width: 92%;
+
+    transform:
+      translateX(-2%)
+      rotateX(var(--hero-tilt-x))
+      rotateY(var(--hero-tilt-y));
+  }
 
   .device-laptop__screen {
     padding: 0.42rem;
@@ -504,6 +514,22 @@
     font-size: 0.62rem;
     padding: 0.45rem 0.6rem;
   }
+
+  .hero__meta {
+    top: -1.25rem;
+    right: 0;
+    font-size: 0.56rem;
+  }
+
+  .hero__meta::before {
+    width: 1.4rem;
+  }
+
+  .hero__cross--top {
+    top: 0.5rem;
+    left: 0;
+    font-size: 0.95rem;
+  }
 }
 
 /* =========================================================
@@ -522,53 +548,4 @@
   .hero__project-label {
     max-width: 70%;
   }
-}
-
-@media (max-width: 1080px) {
-  .hero__meta {
-    top: -1rem;
-    right: 1rem;
-  }
-
-  .hero__cross--top {
-    top: 1.5rem;
-    left: 0.5rem;
-  }
-}
-
-@media (max-width: 560px) {
-  .hero__meta {
-    top: -1.25rem;
-    right: 0;
-    font-size: 0.56rem;
-  }
-
-  .hero__meta::before {
-    width: 1.4rem;
-  }
-
-  .hero__cross--top {
-    top: 0.5rem;
-    left: 0;
-    font-size: 0.95rem;
-  }
-}
-
-.hero__motion-button {
-  position: absolute;
-  left: 50%;
-  bottom: 1rem;
-  transform: translateX(-50%);
-  z-index: 10;
-  padding: 0.65rem 1rem;
-  border: 1px solid var(--color-line);
-  border-radius: 3px;
-  background: var(--color-bg);
-  color: var(--color-ink);
-  font: inherit;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
 }
