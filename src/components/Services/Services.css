@@ -186,6 +186,17 @@
   transform: translate(2px, -2px);
 }
 
+/* Con teclado, "Ver más" tiene que verse al recibir foco. */
+.services__item:focus-within .services__action {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.services__action:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 /* =========================================================
    TABLET
    ========================================================= */
@@ -283,8 +294,8 @@
 
   background: rgba(20, 20, 20, 0.38);
 
-  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 
   animation: servicesOverlayIn 250ms ease forwards;
 }

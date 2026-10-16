@@ -7,8 +7,8 @@
     var(--color-bg) 88%,
     transparent
   );
-  backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
   transition:
     border-color 300ms ease,
@@ -144,11 +144,12 @@
 .header__cta:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: var(--color-ink);
+  color: #fff;
   transform: translateY(-2px);
 }
 
 .header__cta:hover .header__cta-arrow {
+  color: inherit;
   transform: translate(2px, -2px);
 }
 
@@ -313,6 +314,7 @@
   .header__mobile-cta:hover {
     background: var(--color-accent);
     border-color: var(--color-accent);
+    color: #fff;
     transform: translateY(-2px);
   }
 }

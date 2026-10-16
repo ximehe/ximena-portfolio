@@ -299,7 +299,7 @@
   }
 
   .featured__title {
-    font-size: clamp(2.8rem, 15vw, 4.5rem);
+    font-size: clamp(2.4rem, 13vw, 4.5rem);
   }
 
   .featured__title-line:last-child {

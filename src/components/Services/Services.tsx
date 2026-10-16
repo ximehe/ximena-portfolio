@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReveal } from "../../hooks/useReveal";
 import { services } from "../../content/site";
 import "./Services.css";
@@ -8,24 +8,56 @@ type Service = (typeof services.items)[number];
 export function Services() {
   const scopeRef = useReveal<HTMLDivElement>();
   const [activeService, setActiveService] = useState<Service | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const isOpen = activeService !== null;
 
   useEffect(() => {
-    if (!activeService) {
+    if (!isOpen) {
       document.body.style.overflow = "";
       return;
     }
 
     document.body.style.overflow = "hidden";
 
+    // Al abrir, el foco pasa al panel; al cerrar, vuelve al botón
+    // que lo abrió.
+    triggerRef.current = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
+
     return () => {
       document.body.style.overflow = "";
+      triggerRef.current?.focus();
     };
-  }, [activeService]);
+  }, [isOpen]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setActiveService(null);
+        return;
+      }
+
+      // Mantiene el foco dentro del panel mientras está abierto.
+      const panel = panelRef.current;
+
+      if (event.key !== "Tab" || !panel) return;
+
+      const focusables = panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])'
+      );
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     }
 
@@ -102,12 +134,14 @@ export function Services() {
           }}
         >
           <div
+            ref={panelRef}
             className="services-modal__panel"
             role="dialog"
             aria-modal="true"
             aria-labelledby="services-modal-title"
           >
             <button
+              ref={closeButtonRef}
               type="button"
               className="services-modal__close"
               onClick={() => setActiveService(null)}
@@ -167,7 +201,11 @@ export function Services() {
             <a
               href="#contacto"
               className="services-modal__cta"
-              onClick={() => setActiveService(null)}
+              onClick={() => {
+                // Navega a #contacto: no devolver el foco a la lista.
+                triggerRef.current = null;
+                setActiveService(null);
+              }}
             >
               Quiero este servicio
               <span aria-hidden="true">↗︎</span>

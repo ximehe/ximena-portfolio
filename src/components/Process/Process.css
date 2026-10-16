@@ -47,7 +47,7 @@
 }
 
 /* Cuando la sección entra en viewport */
-.process.is-visible .process__list::after {
+.process.section-is-visible .process__list::after {
   transform: scaleY(1);
 }
 
@@ -199,7 +199,7 @@
     transform-origin: left;
   }
 
-  .process.is-visible .process__list::after {
+  .process.section-is-visible .process__list::after {
     transform: scaleX(1);
   }
 

@@ -80,6 +80,7 @@
 .contact__cta:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
+  color: #fff;
   transform: translateY(-3px);
 }
 

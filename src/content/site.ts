@@ -278,7 +278,7 @@ export const pricing = {
 export const contact = {
   title: "¿Hacemos realidad tu web?",
   text: "Contame sobre tu negocio, qué necesitás y qué tenés en mente. Vemos juntos cuál es la mejor opción para vos.",
-  ctaLabel: "Quiero hablar sobre mi proyecto →",
+  ctaLabel: "Quiero hablar sobre mi proyecto",
 };
 
 export const footer = {
