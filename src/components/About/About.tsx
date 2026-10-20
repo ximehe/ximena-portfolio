@@ -30,20 +30,37 @@ export function About() {
             </h2>
           </div>
 
-          <div
-            className="about__statement"
-            data-reveal
-            style={{ transitionDelay: "140ms" }}
-          >
-            <span className="about__statement-label">
-              Enfoque
-            </span>
+          <div className="about__aside">
+            <figure
+              className="about__photo"
+              data-reveal
+              style={{ transitionDelay: "100ms" }}
+            >
+              <img
+                src={about.photoSrc}
+                alt={about.photoAlt}
+                width={1086}
+                height={1448}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
 
-            <p>
-              Crear sitios que no solo se vean bien,
-              sino que realmente sean útiles para
-              el negocio.
-            </p>
+            <div
+              className="about__statement"
+              data-reveal
+              style={{ transitionDelay: "140ms" }}
+            >
+              <span className="about__statement-label">
+                Enfoque
+              </span>
+
+              <p>
+                Crear sitios que no solo se vean bien,
+                sino que realmente sean útiles para
+                el negocio.
+              </p>
+            </div>
           </div>
         </div>
 

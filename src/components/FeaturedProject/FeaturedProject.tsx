@@ -90,19 +90,6 @@ export function FeaturedProject() {
               </div>
             </div>
 
-            {featuredProject.testimonial && (
-              <figure className="featured__testimonial">
-                <blockquote>
-                  <p>{featuredProject.testimonial.quote}</p>
-                </blockquote>
-
-                <figcaption>
-                  <span>{featuredProject.testimonial.author}</span>
-                  {featuredProject.testimonial.role}
-                </figcaption>
-              </figure>
-            )}
-
             <a
               href={getWhatsappUrl(featuredProject.whatsappMessage)}
               className="featured__cta"

@@ -1,4 +1,5 @@
 import magnoliasDesktop from "../assets/projects/magnolias-desktop.png";
+import ximenaPhoto from "../assets/about/ximena.webp";
 
 export const brand = {
   name: "xime.dev",
@@ -191,16 +192,12 @@ export const featuredProject = {
   ctaLabel: "Quiero algo así para mi negocio",
   whatsappMessage:
     "Hola! Vi el proyecto de Magnolias Cotillón y quiero algo así para mi negocio.",
-  // Solo se muestra cuando hay un testimonio real del cliente.
-  testimonial: null as null | {
-    quote: string;
-    author: string;
-    role: string;
-  },
 };
 
 export const about = {
   eyebrow: "Sobre mí",
+  photoSrc: ximenaPhoto,
+  photoAlt: "Retrato de Ximena, desarrolladora web detrás de xime.dev",
 
   leadLines: [
     {
