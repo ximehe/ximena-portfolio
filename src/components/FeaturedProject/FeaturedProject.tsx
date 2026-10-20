@@ -1,5 +1,5 @@
 import { useReveal } from "../../hooks/useReveal";
-import { featuredProject } from "../../content/site";
+import { featuredProject, getWhatsappUrl } from "../../content/site";
 import "./FeaturedProject.css";
 
 export function FeaturedProject() {
@@ -90,8 +90,26 @@ export function FeaturedProject() {
               </div>
             </div>
 
-            <a href="#contacto" className="featured__cta">
-              Quiero algo así para mi negocio
+            {featuredProject.testimonial && (
+              <figure className="featured__testimonial">
+                <blockquote>
+                  <p>{featuredProject.testimonial.quote}</p>
+                </blockquote>
+
+                <figcaption>
+                  <span>{featuredProject.testimonial.author}</span>
+                  {featuredProject.testimonial.role}
+                </figcaption>
+              </figure>
+            )}
+
+            <a
+              href={getWhatsappUrl(featuredProject.whatsappMessage)}
+              className="featured__cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {featuredProject.ctaLabel}
               <span aria-hidden="true">↗︎</span>
             </a>
           </div>

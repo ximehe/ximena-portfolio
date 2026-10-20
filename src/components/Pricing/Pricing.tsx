@@ -1,5 +1,5 @@
 import { useReveal } from "../../hooks/useReveal";
-import { pricing } from "../../content/site";
+import { pricing, getWhatsappUrl } from "../../content/site";
 import "./Pricing.css";
 
 export function Pricing() {
@@ -70,8 +70,10 @@ export function Pricing() {
             <p>{pricing.closingText}</p>
 
             <a
-              href={pricing.ctaHref}
+              href={getWhatsappUrl(pricing.whatsappMessage)}
               className="pricing__cta"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {pricing.ctaLabel}
             </a>

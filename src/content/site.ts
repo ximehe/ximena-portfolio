@@ -27,8 +27,7 @@ export const hero = {
 ],
   subtitle:
     "Diseño y desarrollo sitios web modernos, rápidos y adaptados a celulares para pequeños negocios y emprendimientos.",
-  ctaLabel: "Quiero una web para mi negocio →",
-  ctaHref: "#contacto",
+  ctaLabel: "Escribime por WhatsApp ↗︎",
   tags: ["Sitios web", "Landing pages", "Catálogos", "Tiendas online"],
 };
 
@@ -37,8 +36,9 @@ export const whatsappNumber = "59894094579";
 export const whatsappMessage =
   "Hola! Vi tu página y quiero contarte sobre mi proyecto.";
 
-export function getWhatsappUrl() {
-  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+// Cada botón puede precargar un mensaje propio según el contexto.
+export function getWhatsappUrl(message: string = whatsappMessage) {
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
 export const socials = {
@@ -188,6 +188,15 @@ export const featuredProject = {
   imageSrc: magnoliasDesktop,
   imageAlt: "Tienda online de Magnolias Cotillón en versión escritorio",
   liveUrl: "https://www.magnoliascotillon.com",
+  ctaLabel: "Quiero algo así para mi negocio",
+  whatsappMessage:
+    "Hola! Vi el proyecto de Magnolias Cotillón y quiero algo así para mi negocio.",
+  // Solo se muestra cuando hay un testimonio real del cliente.
+  testimonial: null as null | {
+    quote: string;
+    author: string;
+    role: string;
+  },
 };
 
 export const about = {
@@ -195,12 +204,12 @@ export const about = {
 
   leadLines: [
     {
-      text: "Estoy construyendo ",
-      highlight: "experiencia profesional",
+      text: "Trabajo directo con vos, ",
+      highlight: "de la idea",
     },
     {
-      text: "trabajando con ",
-      highlight: "proyectos reales.",
+      text: "a la web ",
+      highlight: "publicada.",
     },
   ],
 
@@ -271,14 +280,16 @@ export const pricing = {
   closingTitle: "¿Tenés una idea en mente?",
   closingText:
     "Contame un poco sobre tu proyecto y vemos juntos qué necesitás.",
-  ctaLabel: "Quiero consultar →",
-  ctaHref: "#contacto",
+  ctaLabel: "Pedir presupuesto por WhatsApp ↗︎",
+  whatsappMessage:
+    "Hola! Quiero pedir un presupuesto para mi web.",
 };
 
 export const contact = {
   title: "¿Hacemos realidad tu web?",
   text: "Contame sobre tu negocio, qué necesitás y qué tenés en mente. Vemos juntos cuál es la mejor opción para vos.",
-  ctaLabel: "Quiero hablar sobre mi proyecto",
+  ctaLabel: "Escribime por WhatsApp",
+  instagramLabel: "@xime.dev",
 };
 
 export const footer = {

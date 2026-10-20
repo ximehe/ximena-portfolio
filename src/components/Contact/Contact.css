@@ -62,10 +62,10 @@
   margin-top: 2rem;
   padding: 1.1rem 1.2rem;
 
-  background: var(--color-bg-soft);
-  border: 1px solid var(--color-line);
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
 
-  color: var(--color-ink);
+  color: #fff;
   text-decoration: none;
 
   font-size: 0.85rem;
@@ -78,8 +78,8 @@
 }
 
 .contact__cta:hover {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+  background: var(--color-accent-ink);
+  border-color: var(--color-accent-ink);
   color: #fff;
   transform: translateY(-3px);
 }
@@ -92,7 +92,7 @@
   width: 2rem;
   height: 2rem;
 
-  border: 1px solid var(--color-line);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 50%;
 
   transition:
@@ -106,28 +106,27 @@
 }
 
 /* -------------------------------- */
-/* BOTTOM                           */
+/* CANAL ALTERNATIVO                */
 /* -------------------------------- */
 
-.contact__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-top: clamp(5rem, 12vh, 9rem);
-  padding-top: 1.25rem;
-
-  border-top: 1px solid var(--color-line);
-
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--color-ink-faint);
+.contact__alt {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-small);
+  color: var(--color-ink-soft);
 }
 
-.contact__bottom span:last-child {
-  color: var(--color-accent);
+.contact__alt a {
+  color: var(--color-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 200ms ease;
+}
+
+.contact__alt a:hover,
+.contact__alt a:focus-visible {
+  text-decoration-color: var(--color-accent);
 }
 
 /* -------------------------------- */
@@ -171,9 +170,5 @@
   .contact__cta {
     margin-top: 1.5rem;
     padding: 1rem;
-  }
-
-  .contact__bottom {
-    margin-top: 4rem;
   }
 }

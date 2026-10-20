@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useReveal } from "../../hooks/useReveal";
-import { services } from "../../content/site";
+import { services, getWhatsappUrl } from "../../content/site";
 import "./Services.css";
 
 type Service = (typeof services.items)[number];
@@ -199,15 +199,14 @@ export function Services() {
             </div>
 
             <a
-              href="#contacto"
+              href={getWhatsappUrl(
+                `Hola! Me interesa el servicio de ${activeService.title.toLowerCase()} para mi negocio.`
+              )}
               className="services-modal__cta"
-              onClick={() => {
-                // Navega a #contacto: no devolver el foco a la lista.
-                triggerRef.current = null;
-                setActiveService(null);
-              }}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Quiero este servicio
+              Consultar por WhatsApp
               <span aria-hidden="true">↗︎</span>
             </a>
           </div>

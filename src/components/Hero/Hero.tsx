@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useReveal } from "../../hooks/useReveal";
-import { hero } from "../../content/site";
+import { hero, getWhatsappUrl } from "../../content/site";
 import magnoliasDesktop from "../../assets/projects/magnolias-desktop.png";
 import magnoliasMobile from "../../assets/projects/magnolias-mobile.png";
 import "./Hero.css";
@@ -153,7 +153,12 @@ export function Hero() {
             <p className="hero__subtitle">{hero.subtitle}</p>
 
             <div className="hero__actions">
-              <a href={hero.ctaHref} className="btn btn-primary">
+              <a
+                href={getWhatsappUrl()}
+                className="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {hero.ctaLabel}
               </a>
             </div>

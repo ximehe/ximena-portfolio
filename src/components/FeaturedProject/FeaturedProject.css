@@ -219,6 +219,36 @@
    CTA
    ========================================================= */
 
+/* Testimonio del cliente (solo si existe en site.ts) */
+
+.featured__testimonial {
+  margin: 0 0 var(--sp-6);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--color-line);
+}
+
+.featured__testimonial blockquote {
+  margin: 0;
+}
+
+.featured__testimonial p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+}
+
+.featured__testimonial figcaption {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-small);
+  color: var(--color-ink-soft);
+}
+
+.featured__testimonial figcaption span {
+  display: block;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
 .featured__cta {
   display: inline-flex;
   align-items: center;

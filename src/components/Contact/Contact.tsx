@@ -1,5 +1,5 @@
 import { useReveal } from "../../hooks/useReveal";
-import { contact, getWhatsappUrl } from "../../content/site";
+import { contact, getWhatsappUrl, socials } from "../../content/site";
 import "./Contact.css";
 
 export function Contact() {
@@ -37,23 +37,26 @@ export function Contact() {
               href={getWhatsappUrl()}
               className="contact__cta"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               <span>{contact.ctaLabel}</span>
               <span className="contact__cta-arrow" aria-hidden="true">
                 ↗︎
               </span>
             </a>
-          </div>
-        </div>
 
-        <div
-          className="contact__bottom"
-          data-reveal
-          style={{ transitionDelay: "280ms" }}
-        >
-          <span>¿Tenés una idea?</span>
-          <span>Hablemos.</span>
+            <p className="contact__alt">
+              ¿Preferís Instagram?{" "}
+              <a
+                href={socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Escribime a {contact.instagramLabel}
+                <span aria-hidden="true"> ↗︎</span>
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </section>
