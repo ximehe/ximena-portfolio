@@ -32,7 +32,14 @@
   background: var(--color-line);
 }
 
-/* Línea animada */
+/* Línea animada. Se dibuja después de que aparecen los pasos (con
+   un retraso para que los círculos ya estén casi opacos) y siempre
+   por debajo de ellos. */
+.process__list::before,
+.process__list::after {
+  z-index: 0;
+}
+
 .process__list::after {
   content: "";
   position: absolute;
@@ -43,12 +50,33 @@
   background: var(--color-accent);
   transform: scaleY(0);
   transform-origin: top;
-  transition: transform 1.4s var(--ease-out);
+  transition: transform 1.4s var(--ease-out) 450ms;
 }
 
-/* Cuando la sección entra en viewport */
-.process[data-section-visible] .process__list::after {
+/* Arranca cuando aparece el primer paso. */
+.process__list:has(> .process__step[data-visible])::after {
   transform: scaleY(1);
+}
+
+/* Los pasos aparecen juntos (con su escalonado) en cuanto asoma el
+   primero; si no, en mobile el último entra recién al scrollear y
+   la línea llega antes que su número. */
+.process__list:has(> .process__step[data-visible]) > .process__step {
+  opacity: 1;
+  animation: revealUp 600ms var(--ease-out) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process__list:has(> .process__step[data-visible]) > .process__step {
+    animation: none;
+  }
+}
+
+/* Navegadores sin :has(): se usa la visibilidad de la sección. */
+@supports not selector(:has(*)) {
+  .process[data-section-visible] .process__list::after {
+    transform: scaleY(1);
+  }
 }
 
 /* -------------------------------- */
@@ -57,6 +85,9 @@
 
 .process__step {
   position: relative;
+  /* Por encima de la línea también mientras dura su animación de
+     entrada (el transform lo vuelve una capa propia). */
+  z-index: 1;
   display: grid;
   grid-template-columns: 3.2rem 1fr;
   gap: var(--sp-6);
@@ -176,8 +207,14 @@
     transform-origin: left;
   }
 
-  .process[data-section-visible] .process__list::after {
+  .process__list:has(> .process__step[data-visible])::after {
     transform: scaleX(1);
+  }
+
+  @supports not selector(:has(*)) {
+    .process[data-section-visible] .process__list::after {
+      transform: scaleX(1);
+    }
   }
 
   .process__step {
