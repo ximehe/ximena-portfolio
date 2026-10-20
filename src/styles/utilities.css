@@ -15,6 +15,43 @@
 }
 
 /* =========================================================
+   ÁREAS TÁCTILES
+   En pantallas táctiles, los controles chicos reciben un área
+   invisible de al menos 44px sin cambiar su tamaño visual.
+   ========================================================= */
+
+@media (pointer: coarse) {
+  .header__logo,
+  .header__toggle,
+  .services__action,
+  .contact__alt a,
+  .pricing__cta,
+  .featured__cta,
+  .footer__back {
+    position: relative;
+  }
+
+  .header__logo::before,
+  .header__toggle::before,
+  .services__action::before,
+  .contact__alt a::before,
+  .pricing__cta::before,
+  .featured__cta::before,
+  .footer__back::before {
+    content: "";
+    position: absolute;
+  }
+
+  .header__logo::before { inset: -11px -6px; }
+  .header__toggle::before { inset: -4px; }
+  .services__action::before { inset: -13px -8px; }
+  .contact__alt a::before { inset: -14px -4px; }
+  .pricing__cta::before { inset: -9px 0; }
+  .featured__cta::before { inset: -4px 0; }
+  .footer__back::before { inset: -14px -4px; }
+}
+
+/* =========================================================
    SCROLL REVEAL
    Cada elemento marcado con data-reveal sube un poco desde abajo
    al entrar en pantalla. Es una animación (no una transición)

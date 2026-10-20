@@ -27,6 +27,34 @@
   align-items: flex-start;
 }
 
+/* Entrada del título y la imagen: animación CSS que corre apenas
+   llega el HTML prerenderizado, sin esperar al JavaScript. */
+.hero__enter {
+  animation: revealUp 600ms var(--ease-out) backwards;
+}
+
+/* La imagen es el elemento principal en mobile (LCP): sube sin
+   fundido para estar visible desde el primer cuadro. */
+.hero__visual.hero__enter {
+  animation-name: heroRise;
+}
+
+@keyframes heroRise {
+  from {
+    transform: translateY(14px);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__enter {
+    animation: none;
+  }
+}
+
 .hero__word {
   display: block;
   width: 100%;

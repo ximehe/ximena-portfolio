@@ -498,6 +498,14 @@
   }
 }
 
+/* Con movimiento reducido el panel aparece con un fundido, sin
+   deslizarse (el cierre ya es instantáneo desde Services.tsx). */
+@media (prefers-reduced-motion: reduce) {
+  .services-modal__panel {
+    animation: servicesOverlayIn 200ms ease forwards;
+  }
+}
+
 @keyframes servicesOverlayOut {
   from {
     opacity: 1;

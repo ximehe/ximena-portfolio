@@ -1,12 +1,10 @@
 import { useEffect, useRef } from "react";
-import { useReveal } from "../../hooks/useReveal";
 import { hero, getWhatsappUrl } from "../../content/site";
 import magnoliasDesktop from "../../assets/projects/magnolias-desktop.webp";
 import magnoliasMobile from "../../assets/projects/magnolias-mobile.webp";
 import "./Hero.css";
 
 export function Hero() {
-  const scopeRef = useReveal<HTMLDivElement>();
   const visualRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -164,27 +162,24 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="top" className="hero" ref={scopeRef}>
+    <section id="top" className="hero">
       <div className="container hero__grid">
         <div className="hero__copy">
           <h1 className="hero__title">
             {hero.titleWords.map((word, index) => (
               <span
                 key={word.text}
-                className={`hero__word hero__word--${word.variant}`}
-                style={{ transitionDelay: `${index * 55}ms` }}
-                data-reveal
+                className={`hero__word hero__word--${word.variant} hero__enter`}
+                style={{ animationDelay: `${index * 55}ms` }}
               >
                 {word.text}
               </span>
             ))}
           </h1>
 
-          <div
-            className="hero__foot"
-            data-reveal
-            style={{ transitionDelay: "380ms" }}
-          >
+          {/* Subtítulo y botón visibles desde el primer pintado: son el
+              contenido principal (LCP) y no esperan animación. */}
+          <div className="hero__foot">
             <p className="hero__subtitle">{hero.subtitle}</p>
 
             <div className="hero__actions">
@@ -199,21 +194,16 @@ export function Hero() {
             </div>
           </div>
 
-          <p
-            className="hero__tags"
-            data-reveal
-            style={{ transitionDelay: "440ms" }}
-          >
+          <p className="hero__tags">
             {hero.tags.join(" · ")}
           </p>
         </div>
 
         <div
           ref={visualRef}
-          className="hero__visual"
+          className="hero__visual hero__enter"
           aria-label="Vista del proyecto Magnolias Cotillón en escritorio y mobile"
-          data-reveal
-          style={{ transitionDelay: "220ms" }}
+          style={{ animationDelay: "220ms" }}
         >
           <div className="hero__meta" aria-hidden="true">
             <span>WEB</span>

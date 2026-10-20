@@ -11,11 +11,14 @@ export function Header() {
       setIsScrolled(window.scrollY > 12);
     };
 
-    onScroll();
+    // La primera lectura se difiere un cuadro: leer scrollY justo
+    // después de montar obliga a calcular el layout de toda la página.
+    const initialRead = requestAnimationFrame(onScroll);
 
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
+      cancelAnimationFrame(initialRead);
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
