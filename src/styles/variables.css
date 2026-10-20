@@ -5,8 +5,9 @@
   --color-bg-soft: #f1f6f9;
 
   --color-ink: #141414;
-  --color-ink-soft: rgba(20, 20, 20, 0.62);
-  --color-ink-faint: rgba(20, 20, 20, 0.36);
+  --color-ink-soft: rgba(20, 20, 20, 0.72);
+  /* 0.6 sobre el fondo claro da 4.7:1 (WCAG AA para texto chico). */
+  --color-ink-faint: rgba(20, 20, 20, 0.6);
 
   --color-line: rgba(20, 20, 20, 0.11);
 
@@ -18,6 +19,7 @@
 
   --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-editorial: "Newsreader", Georgia, "Times New Roman", serif;
 
   /* Fluid type scale */
 

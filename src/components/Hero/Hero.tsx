@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useReveal } from "../../hooks/useReveal";
 import { hero, getWhatsappUrl } from "../../content/site";
-import magnoliasDesktop from "../../assets/projects/magnolias-desktop.png";
-import magnoliasMobile from "../../assets/projects/magnolias-mobile.png";
+import magnoliasDesktop from "../../assets/projects/magnolias-desktop.webp";
+import magnoliasMobile from "../../assets/projects/magnolias-mobile.webp";
 import "./Hero.css";
 
 export function Hero() {
@@ -200,6 +200,9 @@ export function Hero() {
                 <img
                   src={magnoliasDesktop}
                   alt="Sitio web de Magnolias Cotillón en versión escritorio"
+                  width={1600}
+                  height={764}
+                  fetchPriority="high"
                 />
               </div>
 
@@ -218,6 +221,8 @@ export function Hero() {
               <img
                 src={magnoliasMobile}
                 alt="Sitio web de Magnolias Cotillón en versión mobile"
+                width={411}
+                height={826}
               />
             </div>
           </div>

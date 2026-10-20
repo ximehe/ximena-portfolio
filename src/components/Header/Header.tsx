@@ -63,7 +63,7 @@ export function Header() {
         >
           <span>Hablemos</span>
           <span className="header__cta-arrow" aria-hidden="true">
-            ↗︎
+            →
           </span>
         </a>
 
@@ -95,20 +95,16 @@ export function Header() {
 
           <nav aria-label="Navegación móvil">
             <ul>
-              {nav.map((item, index) => (
+              {nav.map((item) => (
                 <li key={item.href}>
                   <a href={item.href} onClick={handleLinkClick}>
-                    <span className="header__mobile-number">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
                     <span>{item.label}</span>
 
                     <span
                       className="header__mobile-arrow"
                       aria-hidden="true"
                     >
-                      ↗︎
+                      →
                     </span>
                   </a>
                 </li>
@@ -122,7 +118,7 @@ export function Header() {
             onClick={handleLinkClick}
           >
             <span>Hablemos sobre tu proyecto</span>
-            <span aria-hidden="true">↗︎</span>
+            <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>

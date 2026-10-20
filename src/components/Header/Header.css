@@ -150,7 +150,7 @@
 
 .header__cta:hover .header__cta-arrow {
   color: inherit;
-  transform: translate(2px, -2px);
+  transform: translateX(3px);
 }
 
 /* =========================================================
@@ -256,7 +256,7 @@
 
   .header__mobile-menu li a {
     display: grid;
-    grid-template-columns: 2.5rem 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: 1rem;
     padding-block: 1rem;
@@ -275,13 +275,6 @@
     color: var(--color-accent);
   }
 
-  .header__mobile-number {
-    font-family: var(--font-display);
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--color-ink-faint);
-  }
-
   .header__mobile-arrow {
     color: var(--color-accent);
     font-size: 1rem;
@@ -290,7 +283,7 @@
   }
 
   .header__mobile-menu li a:hover .header__mobile-arrow {
-    transform: translate(3px, -3px);
+    transform: translateX(3px);
   }
 
   .header__mobile-cta {

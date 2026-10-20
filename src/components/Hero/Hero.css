@@ -62,7 +62,7 @@
 .hero__word--editorial {
   width: auto;
   margin-block: 0.08em 0.04em;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-editorial);
   font-size: clamp(1.9rem, min(6.2vh, 4.1vw), 3.35rem);
   font-weight: 400;
   font-style: normal;

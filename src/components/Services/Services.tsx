@@ -94,8 +94,6 @@ export function Services() {
                 data-reveal
                 style={{ transitionDelay: `${140 + index * 80}ms` }}
               >
-                <div className="services__number">{item.number}</div>
-
                 <div className="services__content">
                   <h3 className="services__item-title">
                     {item.title}
@@ -114,7 +112,7 @@ export function Services() {
                 >
                   <span>Ver más</span>
                   <span className="services__arrow" aria-hidden="true">
-                    ↗︎
+                    →
                   </span>
                 </button>
               </li>
@@ -151,10 +149,6 @@ export function Services() {
             </button>
 
             <div className="services-modal__header">
-              <span className="services-modal__number">
-                {activeService.number}
-              </span>
-
               <p className="services-modal__eyebrow">
                 Servicio
               </p>

@@ -1,4 +1,4 @@
-import magnoliasDesktop from "../assets/projects/magnolias-desktop.png";
+import magnoliasDesktop from "../assets/projects/magnolias-desktop.webp";
 import ximenaPhoto from "../assets/about/ximena.webp";
 
 export const brand = {
@@ -179,9 +179,9 @@ export const services = {
 
 
 export const featuredProject = {
-  eyebrow: "Proyecto real / 01",
+  eyebrow: "Proyecto real",
   name: ["Magnolias", "Cotillón"],
-  category: "E-commerce · Proyecto real",
+  category: "Tienda online",
   description:
     "Tienda online desarrollada para un negocio real de cotillón, con catálogo de productos, variantes, carrito de compras, wishlist y gestión de pedidos.",
   tech: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],

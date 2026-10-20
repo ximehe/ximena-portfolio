@@ -42,6 +42,10 @@ export function FeaturedProject() {
               <img
                 src={featuredProject.imageSrc}
                 alt={featuredProject.imageAlt}
+                width={1600}
+                height={764}
+                loading="lazy"
+                decoding="async"
               />
 
               <span className="featured__image-overlay">

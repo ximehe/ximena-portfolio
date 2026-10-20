@@ -40,10 +40,6 @@ export function Pricing() {
                 transitionDelay: `${220 + index * 100}ms`,
               }}
             >
-              <span className="pricing__number">
-                {factor.number}
-              </span>
-
               <div className="pricing__factor-content">
                 <h3 className="pricing__factor-title">
                   {factor.title}

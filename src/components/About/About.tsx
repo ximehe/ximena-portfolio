@@ -86,10 +86,6 @@ export function About() {
             style={{ transitionDelay: "300ms" }}
           >
             <div className="about__profile-header">
-              <span className="about__profile-number">
-                01
-              </span>
-
               <span className="about__profile-label">
                 Desarrollo web
               </span>
