@@ -16,70 +16,36 @@
 
 /* =========================================================
    SCROLL REVEAL
+   Cada elemento marcado con data-reveal sube un poco desde abajo
+   al entrar en pantalla. Es una animación (no una transición)
+   para no pisar las transiciones propias de cada componente; el
+   escalonado lo pone useReveal en animation-delay.
    ========================================================= */
 
-.reveal {
+[data-reveal]:not([data-visible]) {
   opacity: 0;
-  transform: translateY(-55px);
-  transition:
-    opacity 850ms var(--ease-out),
-    transform 850ms var(--ease-out);
-  will-change: opacity, transform;
 }
 
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+[data-reveal][data-visible] {
+  animation: revealUp 600ms var(--ease-out) backwards;
 }
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
+  to {
     opacity: 1;
     transform: none;
-    transition: none;
   }
 }
 
-/* =========================================================
-   SECTION DROP REVEAL
-   ========================================================= */
-
-.section-reveal {
-  opacity: 0;
-  transform: translateY(-70px);
-  transition:
-    opacity 750ms var(--ease-out),
-    transform 900ms var(--ease-out);
-  will-change: opacity, transform;
-}
-
-.section-reveal.section-is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =========================================================
-   HERO — INITIAL ENTRANCE
-   ========================================================= */
-
-.hero.section-reveal {
-  opacity: 1;
-  transform: none;
-  animation: heroEntrance 900ms var(--ease-out) both;
-}
-
-@keyframes heroEntrance {
-  0% {
-    opacity: 0;
-    transform: translateY(-35px);
-  }
-
-  100% {
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal]:not([data-visible]),
+  [data-reveal][data-visible] {
     opacity: 1;
-    transform: translateY(0);
+    animation: none;
   }
 }

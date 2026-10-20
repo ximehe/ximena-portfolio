@@ -51,15 +51,17 @@
   content: "";
   position: absolute;
   left: 0;
-  right: 100%;
+  right: 0;
   bottom: -5px;
   height: 2px;
   background: var(--color-accent);
-  transition: right 300ms var(--ease-out);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms var(--ease-out);
 }
 
 .header__logo:hover::after {
-  right: 0;
+  transform: scaleX(1);
 }
 
 /* =========================================================
@@ -100,16 +102,18 @@
   content: "";
   position: absolute;
   left: 0;
-  right: 100%;
+  right: 0;
   bottom: 0;
   height: 1px;
   background: var(--color-accent);
-  transition: right 300ms var(--ease-out);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms var(--ease-out);
 }
 
 .header__nav a:hover::after,
 .header__nav a:focus-visible::after {
-  right: 0;
+  transform: scaleX(1);
 }
 
 /* =========================================================
@@ -146,6 +150,11 @@
   border-color: var(--color-accent);
   color: #fff;
   transform: translateY(-2px);
+}
+
+.header__cta:active {
+  transform: scale(0.97);
+  transition-duration: 120ms;
 }
 
 .header__cta:hover .header__cta-arrow {
@@ -217,21 +226,53 @@
     display: flex;
   }
 
+  /* 0fr → 1fr anima la altura real sin recalcular max-height. */
   .header__mobile-menu {
-    display: block;
-    max-height: 0;
-    overflow: hidden;
+    display: grid;
+    grid-template-rows: 0fr;
     background: var(--color-bg);
     border-top: 1px solid transparent;
     transition:
-      max-height 500ms var(--ease-out),
+      grid-template-rows 400ms var(--ease-out),
       border-color 300ms ease;
   }
 
+  .header__mobile-menu > .container {
+    min-height: 0;
+    overflow: hidden;
+    /* Cerrado no debe recibir foco; se oculta al terminar de plegarse. */
+    visibility: hidden;
+    transition: visibility 0s linear 400ms;
+  }
+
+  .header__mobile-menu.is-open > .container {
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
   .header__mobile-menu.is-open {
-    max-height: 36rem;
+    grid-template-rows: 1fr;
     border-top-color: var(--color-line);
   }
+
+  /* Los links acompañan la apertura con un escalonado corto. */
+  .header__mobile-menu li {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition:
+      opacity 250ms ease,
+      transform 350ms var(--ease-out);
+  }
+
+  .header__mobile-menu.is-open li {
+    opacity: 1;
+    transform: none;
+  }
+
+  .header__mobile-menu.is-open li:nth-child(2) { transition-delay: 40ms; }
+  .header__mobile-menu.is-open li:nth-child(3) { transition-delay: 80ms; }
+  .header__mobile-menu.is-open li:nth-child(4) { transition-delay: 120ms; }
+  .header__mobile-menu.is-open li:nth-child(5) { transition-delay: 160ms; }
 
   .header__mobile-label {
     padding-top: 1.5rem;
@@ -265,14 +306,19 @@
     font-size: 1.3rem;
     font-weight: 700;
     text-decoration: none;
-    transition:
-      color 200ms ease,
-      padding-left 300ms var(--ease-out);
+    transition: color 200ms ease;
   }
 
   .header__mobile-menu li a:hover {
-    padding-left: 0.4rem;
     color: var(--color-accent);
+  }
+
+  .header__mobile-menu li a > span:first-child {
+    transition: transform 300ms var(--ease-out);
+  }
+
+  .header__mobile-menu li a:hover > span:first-child {
+    transform: translateX(0.4rem);
   }
 
   .header__mobile-arrow {
@@ -302,6 +348,10 @@
       background-color 250ms ease,
       border-color 250ms ease,
       transform 300ms var(--ease-out);
+  }
+
+  .header__mobile-cta:active {
+    transform: scale(0.97);
   }
 
   .header__mobile-cta:hover {

@@ -40,12 +40,8 @@
   padding-block: clamp(1.75rem, 4vh, 2.75rem);
 
   border-top: 1px solid var(--color-line);
-  overflow: hidden;
 
-  transition:
-    padding-left 300ms var(--ease-out),
-    padding-right 300ms var(--ease-out),
-    background-color 300ms ease;
+  transition: background-color 300ms ease;
 }
 
 /* Línea de acento */
@@ -122,7 +118,9 @@
 
   white-space: nowrap;
 
-  transition: color 200ms ease;
+  transition:
+    color 200ms ease,
+    transform 300ms var(--ease-out);
 }
 
 .services__arrow {
@@ -136,26 +134,38 @@
    HOVER
    ========================================================= */
 
-.services__item:hover {
-  padding-left: var(--sp-4);
-  padding-right: var(--sp-4);
-  background: var(--color-bg-soft);
+/* La fila se "abre": el contenido entra 1rem desde cada lado. Con
+   transform en vez de padding, y solo con mouse (en touch el hover
+   queda pegado después del tap). */
+.services__content {
+  transition: transform 300ms var(--ease-out);
 }
 
-.services__item:hover::before {
-  transform: scaleY(1);
-}
+@media (hover: hover) and (pointer: fine) {
+  .services__item:hover {
+    background: var(--color-bg-soft);
+  }
 
-.services__item:hover .services__item-title {
-  transform: translateX(6px);
-}
+  .services__item:hover::before {
+    transform: scaleY(1);
+  }
 
-.services__item:hover .services__action {
-  color: var(--color-accent);
-}
+  .services__item:hover .services__content {
+    transform: translateX(var(--sp-4));
+  }
 
-.services__item:hover .services__arrow {
-  transform: translateX(3px);
+  .services__item:hover .services__item-title {
+    transform: translateX(6px);
+  }
+
+  .services__item:hover .services__action {
+    color: var(--color-accent);
+    transform: translateX(calc(-1 * var(--sp-4)));
+  }
+
+  .services__item:hover .services__arrow {
+    transform: translateX(3px);
+  }
 }
 
 .services__action:focus-visible {
@@ -210,16 +220,6 @@
     padding-block: 1.5rem;
   }
 
-  .services__item:hover {
-    padding-left: 0;
-    padding-right: 0;
-    background: transparent;
-  }
-
-  .services__item:hover .services__item-title {
-    transform: none;
-  }
-
   .services__item::before {
     display: none;
   }
@@ -258,6 +258,14 @@
   animation: servicesOverlayIn 250ms ease forwards;
 }
 
+.services-modal.is-closing {
+  animation: servicesOverlayOut 220ms ease forwards;
+}
+
+.services-modal.is-closing .services-modal__panel {
+  animation: servicesPanelOut 220ms var(--ease-out) forwards;
+}
+
 .services-modal__panel {
   position: relative;
 
@@ -272,7 +280,7 @@
 
   box-shadow: -20px 0 60px rgba(20, 20, 20, 0.12);
 
-  animation: servicesPanelIn 450ms var(--ease-out) forwards;
+  animation: servicesPanelIn 400ms var(--ease-drawer) forwards;
 }
 
 .services-modal__close {
@@ -444,7 +452,7 @@
   transition:
     color 180ms ease,
     border-color 180ms ease,
-    gap 180ms ease;
+    transform 120ms var(--ease-out);
 }
 
 .services-modal__cta span {
@@ -454,13 +462,16 @@
 }
 
 .services-modal__cta:hover {
-  gap: 1.35rem;
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
 
+.services-modal__cta:active {
+  transform: scale(0.98);
+}
+
 .services-modal__cta:hover span {
-  transform: translate(2px, -2px);
+  transform: translate(calc(0.35rem + 2px), -2px);
 }
 
 /* =========================================================
@@ -484,6 +495,26 @@
 
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes servicesOverlayOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes servicesPanelOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
   }
 }
 

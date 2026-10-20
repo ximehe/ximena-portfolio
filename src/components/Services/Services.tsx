@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useReveal } from "../../hooks/useReveal";
 import { services, getWhatsappUrl } from "../../content/site";
 import "./Services.css";
@@ -11,7 +11,38 @@ export function Services() {
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
   const isOpen = activeService !== null;
+
+  // Cierra con una salida corta; con movimiento reducido, al instante.
+  const closeModal = useCallback(() => {
+    if (!panelRef.current || closeTimerRef.current !== null) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reducedMotion) {
+      setActiveService(null);
+      return;
+    }
+
+    setIsClosing(true);
+    closeTimerRef.current = window.setTimeout(() => {
+      closeTimerRef.current = null;
+      setIsClosing(false);
+      setActiveService(null);
+    }, 220);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -35,7 +66,7 @@ export function Services() {
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setActiveService(null);
+        closeModal();
         return;
       }
 
@@ -66,7 +97,7 @@ export function Services() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [closeModal]);
 
   return (
     <>
@@ -123,11 +154,11 @@ export function Services() {
 
       {activeService && (
         <div
-          className="services-modal"
+          className={`services-modal${isClosing ? " is-closing" : ""}`}
           role="presentation"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
-              setActiveService(null);
+              closeModal();
             }
           }}
         >
@@ -142,7 +173,7 @@ export function Services() {
               ref={closeButtonRef}
               type="button"
               className="services-modal__close"
-              onClick={() => setActiveService(null)}
+              onClick={closeModal}
               aria-label="Cerrar"
             >
               ×

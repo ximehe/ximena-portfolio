@@ -64,17 +64,23 @@
     transform 350ms var(--ease-out);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .pricing__factor:hover {
+    background: var(--color-bg-soft);
+    transform: translateY(-3px);
+  }
+
+  .pricing__factor:hover .pricing__factor-title {
+    color: var(--color-accent);
+  }
+}
+
 .pricing__factor:first-child {
   padding-left: 0;
 }
 
 .pricing__factor:last-child {
   border-right: 0;
-}
-
-.pricing__factor:hover {
-  background: var(--color-bg-soft);
-  transform: translateY(-3px);
 }
 
 /* -------------------------------- */
@@ -99,10 +105,6 @@
   letter-spacing: -0.02em;
 
   transition: color 250ms ease;
-}
-
-.pricing__factor:hover .pricing__factor-title {
-  color: var(--color-accent);
 }
 
 .pricing__factor-description {

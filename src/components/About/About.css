@@ -144,7 +144,7 @@
   flex-direction: column;
 }
 
-.about__profile-content span {
+.about__profile-content > span {
   padding: 1rem 1.2rem;
   border-bottom: 1px solid var(--color-line);
   font-family: var(--font-display);
@@ -152,19 +152,30 @@
   font-weight: 700;
   color: var(--color-ink);
   transition:
-    padding-left 250ms var(--ease-out),
     color 200ms ease,
     background-color 200ms ease;
 }
 
-.about__profile-content span:last-child {
-  border-bottom: 0;
+/* El texto se corre 0.3rem al hover: transform sobre el texto, no
+   padding sobre la fila. */
+.about__profile-item > span {
+  display: inline-block;
+  transition: transform 250ms var(--ease-out);
 }
 
-.about__profile-content span:hover {
-  padding-left: 1.5rem;
-  background: var(--color-bg);
-  color: var(--color-accent);
+@media (hover: hover) and (pointer: fine) {
+  .about__profile-item:hover {
+    background: var(--color-bg);
+    color: var(--color-accent);
+  }
+
+  .about__profile-item:hover > span {
+    transform: translateX(0.3rem);
+  }
+}
+
+.about__profile-content > span:last-child {
+  border-bottom: 0;
 }
 
 /* --------------------------------
@@ -268,7 +279,7 @@
     padding: 0.9rem 1rem;
   }
 
-  .about__profile-content span {
+  .about__profile-content > span {
     padding: 0.9rem 1rem;
   }
 

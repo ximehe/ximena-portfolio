@@ -57,6 +57,8 @@
   /* Motion */
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Paneles laterales (cajón tipo iOS). */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   --dur-fast: 0.2s;
   --dur-base: 0.5s;
   --dur-slow: 0.9s;

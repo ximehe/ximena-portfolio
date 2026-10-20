@@ -12,72 +12,6 @@ body {
   margin: 0;
   background-color: var(--color-bg);
 
-  background-image:
-    /* Glow azul principal */
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(43, 77, 255, 0.12),
-      transparent 38rem
-    ),
-
-    /* Glow azul superior izquierdo */
-    radial-gradient(
-      circle at 8% 8%,
-      rgba(215, 230, 242, 0.72),
-      transparent 24rem
-    ),
-
-    /* Glow azul lateral */
-    radial-gradient(
-      circle at 94% 36%,
-      rgba(215, 230, 242, 0.42),
-      transparent 30rem
-    ),
-
-    /* Glow inferior */
-    radial-gradient(
-      circle at 22% 88%,
-      rgba(215, 230, 242, 0.34),
-      transparent 27rem
-    ),
-
-    /* Retícula horizontal */
-    linear-gradient(
-      rgba(30, 60, 140, 0.045) 1px,
-      transparent 1px
-    ),
-
-    /* Retícula vertical */
-    linear-gradient(
-      90deg,
-      rgba(30, 60, 140, 0.045) 1px,
-      transparent 1px
-    ),
-
-    /* Micro puntos */
-    radial-gradient(
-      rgba(43, 77, 255, 0.07) 0.55px,
-      transparent 0.7px
-    );
-
-  background-size:
-    auto,
-    auto,
-    auto,
-    auto,
-    44px 44px,
-    44px 44px,
-    7px 7px;
-
-  background-attachment:
-    fixed,
-    fixed,
-    fixed,
-    fixed,
-    fixed,
-    fixed,
-    fixed;
-
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: var(--fs-body);
@@ -155,7 +89,8 @@ ul {
   border: 1px solid transparent;
   border-radius: 3px;
 
-  padding: 0.9rem 1.6rem;
+  /* A la izquierda queda el lugar del trazo del hover. */
+  padding: 0.9rem 1.6rem 0.9rem calc(1.6rem + var(--sp-2));
 
   font-family: var(--font-body);
   font-size: 0.95rem;
@@ -163,31 +98,54 @@ ul {
   letter-spacing: 0.01em;
 
   transition:
-    transform var(--dur-base) var(--ease-out),
-    background-color var(--dur-base) var(--ease-out),
-    border-color var(--dur-base) var(--ease-out),
-    box-shadow var(--dur-base) var(--ease-out);
+    transform 250ms var(--ease-out),
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
 }
 
-/* Pequeño trazo que crece antes del texto al hover. */
+/* Pequeño trazo que crece antes del texto al hover: crece con
+   scaleX y el texto se corre con transform (sin animar width). */
 .btn::before {
   content: "";
-  display: block;
+  position: absolute;
+  left: 1.6rem;
+  top: 50%;
 
-  width: 0;
+  width: 14px;
   height: 2px;
+  margin-top: -1px;
 
   background: currentColor;
 
-  transition: width var(--dur-base) var(--ease-out);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms var(--ease-out);
 }
 
-.btn:hover::before {
-  width: 14px;
+.btn__label {
+  display: inline-block;
+  transition: transform 250ms var(--ease-out);
 }
 
-.btn:hover {
-  transform: translate(3px, -2px);
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    transform: translate(3px, -2px);
+  }
+
+  .btn:hover::before {
+    transform: scaleX(1);
+  }
+
+  .btn:hover .btn__label {
+    transform: translateX(14px);
+  }
+}
+
+/* Respuesta al presionar: chica y rápida. */
+.btn:active {
+  transform: scale(0.97);
+  transition-duration: 120ms;
 }
 
 .btn:focus-visible {
@@ -221,13 +179,15 @@ ul {
    GLOBAL DECORATIVE SYSTEM
    ========================================================= */
 
+/* Capas fijas detrás del contenido: el navegador las compone sin
+   repintar en cada scroll (background-attachment: fixed sí repinta). */
 body::before,
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
 /* Línea técnica vertical sutil */
@@ -242,31 +202,78 @@ body::before {
     8% 0 / 1px 100% no-repeat;
 }
 
-/* Halo ambiental */
+/* Halo, glows y retícula */
 body::after {
-  background:
+  background-image:
+    /* Halo ambiental */
     radial-gradient(
       circle at 82% 12%,
-      rgba(43, 77, 255, 0.045),
+      rgba(43, 77, 255, 0.04),
       transparent 14rem
     ),
     radial-gradient(
       circle at 12% 62%,
-      rgba(215, 230, 242, 0.16),
+      rgba(215, 230, 242, 0.14),
       transparent 18rem
+    ),
+
+    /* Glow azul principal */
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(43, 77, 255, 0.12),
+      transparent 38rem
+    ),
+
+    /* Glow azul superior izquierdo */
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(215, 230, 242, 0.72),
+      transparent 24rem
+    ),
+
+    /* Glow azul lateral */
+    radial-gradient(
+      circle at 94% 36%,
+      rgba(215, 230, 242, 0.42),
+      transparent 30rem
+    ),
+
+    /* Glow inferior */
+    radial-gradient(
+      circle at 22% 88%,
+      rgba(215, 230, 242, 0.34),
+      transparent 27rem
+    ),
+
+    /* Retícula horizontal */
+    linear-gradient(
+      rgba(30, 60, 140, 0.045) 1px,
+      transparent 1px
+    ),
+
+    /* Retícula vertical */
+    linear-gradient(
+      90deg,
+      rgba(30, 60, 140, 0.045) 1px,
+      transparent 1px
+    ),
+
+    /* Micro puntos */
+    radial-gradient(
+      rgba(43, 77, 255, 0.07) 0.55px,
+      transparent 0.7px
     );
 
-  animation: ambientGlow 12s ease-in-out infinite alternate;
-}
-
-@keyframes ambientGlow {
-  from {
-    opacity: 0.7;
-  }
-
-  to {
-    opacity: 1;
-  }
+  background-size:
+    auto,
+    auto,
+    auto,
+    auto,
+    auto,
+    auto,
+    44px 44px,
+    44px 44px,
+    7px 7px;
 }
 
 /* =========================================================
@@ -305,8 +312,7 @@ body::after {
   font-family: var(--font-body);
   font-size: 1.2rem;
   font-weight: 400;
-  opacity: 0.58;
-  animation: decorPulse 5s ease-in-out infinite;
+  opacity: 0.5;
 }
 
 .decor-star {
@@ -341,8 +347,10 @@ body::after {
    ========================================================= */
 
 @media (max-width: 700px) {
-  body {
+  body::after {
     background-size:
+      auto,
+      auto,
       auto,
       auto,
       auto,

@@ -114,7 +114,7 @@
   text-decoration: none;
   transition:
     color 200ms ease,
-    padding-left 300ms var(--ease-out);
+    transform 300ms var(--ease-out);
 }
 
 .footer__nav a span {
@@ -127,7 +127,7 @@
 }
 
 .footer__nav a:hover {
-  padding-left: 0.4rem;
+  transform: translateX(0.4rem);
   color: var(--color-accent);
 }
 

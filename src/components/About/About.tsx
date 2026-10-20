@@ -92,10 +92,13 @@ export function About() {
             </div>
 
             <div className="about__profile-content">
-              <span>Diseño</span>
-              <span>Frontend</span>
-              <span>E-commerce</span>
-              <span>Proyectos reales</span>
+              {["Diseño", "Frontend", "E-commerce", "Proyectos reales"].map(
+                (skill) => (
+                  <span key={skill} className="about__profile-item">
+                    <span>{skill}</span>
+                  </span>
+                )
+              )}
             </div>
           </div>
         </div>

@@ -65,10 +65,7 @@
   color: inherit;
   text-align: left;
   cursor: pointer;
-  transition:
-    padding-left 300ms var(--ease-out),
-    padding-right 300ms var(--ease-out),
-    background-color 300ms ease;
+  transition: background-color 300ms ease;
 }
 
 .benefits__trigger::before {
@@ -110,6 +107,7 @@
 .benefits__item-copy {
   display: block;
   max-width: 38rem;
+  transition: transform 300ms var(--ease-out);
 }
 
 .benefits__item-title {
@@ -268,29 +266,54 @@
    HOVER / ACTIVE
 -------------------------------- */
 
-.benefits__trigger:hover {
-  padding-left: var(--sp-4);
-  padding-right: var(--sp-4);
-  background: var(--color-bg-soft);
+/* La fila se "abre" 1rem hacia adentro, solo con mouse. */
+@media (hover: hover) and (pointer: fine) {
+  .benefits__trigger:hover {
+    background: var(--color-bg-soft);
+  }
+
+  .benefits__trigger:hover::before {
+    transform: scaleY(1);
+  }
+
+  .benefits__trigger:hover .benefits__number {
+    -webkit-text-stroke-color: var(--color-accent);
+    transform: translateX(calc(var(--sp-4) + 2px));
+  }
+
+  .benefits__trigger:hover .benefits__item-copy {
+    transform: translateX(var(--sp-4));
+  }
+
+  .benefits__trigger:hover .benefits__item-title {
+    transform: translateX(5px);
+  }
+
+  .benefits__trigger:hover .benefits__item-arrow {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+    transform: translateX(calc(-1 * var(--sp-4)));
+  }
+
+  .benefits__item--open .benefits__trigger:hover .benefits__item-arrow {
+    transform: translateX(calc(-1 * var(--sp-4))) rotate(45deg);
+  }
 }
 
-.benefits__trigger:hover::before,
 .benefits__item--open .benefits__trigger::before {
   transform: scaleY(1);
 }
 
-.benefits__trigger:hover .benefits__number,
 .benefits__item--open .benefits__number {
   -webkit-text-stroke-color: var(--color-accent);
   transform: translateX(2px);
 }
 
-.benefits__trigger:hover .benefits__item-title,
 .benefits__item--open .benefits__item-title {
   transform: translateX(5px);
 }
 
-.benefits__trigger:hover .benefits__item-arrow,
 .benefits__item--open .benefits__item-arrow {
   background: var(--color-accent);
   border-color: var(--color-accent);
@@ -356,12 +379,6 @@
     grid-template-columns: 2.8rem minmax(0, 1fr) auto;
     gap: 1rem;
     padding-block: 1.5rem;
-  }
-
-  .benefits__trigger:hover {
-    padding-left: 0;
-    padding-right: 0;
-    background: transparent;
   }
 
   .benefits__number {

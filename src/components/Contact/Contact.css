@@ -84,6 +84,11 @@
   transform: translateY(-3px);
 }
 
+.contact__cta:active {
+  transform: scale(0.98);
+  transition-duration: 120ms;
+}
+
 .contact__cta-arrow {
   display: flex;
   align-items: center;

@@ -22,26 +22,58 @@ export function Hero() {
       return;
     }
 
+    // La inclinación se escribe en cada dispositivo y no en el
+    // contenedor, para no recalcular estilos de todo el hero.
+    const devices = visual.querySelectorAll<HTMLElement>(
+      ".device-laptop, .device-phone"
+    );
+
     let targetX = 0;
     let targetY = 0;
     let currentX = 0;
     let currentY = 0;
     let animationFrame = 0;
+    let isRunning = false;
 
+    // El bucle solo corre mientras la inclinación se está moviendo;
+    // en reposo se detiene y vuelve a arrancar con el puntero.
     const update = () => {
       currentX += (targetX - currentX) * 0.08;
       currentY += (targetY - currentY) * 0.08;
 
-      visual.style.setProperty(
-        "--hero-tilt-x",
-        `${currentY.toFixed(3)}deg`
-      );
+      const settled =
+        Math.abs(targetX - currentX) < 0.01 &&
+        Math.abs(targetY - currentY) < 0.01;
 
-      visual.style.setProperty(
-        "--hero-tilt-y",
-        `${currentX.toFixed(3)}deg`
-      );
+      if (settled) {
+        currentX = targetX;
+        currentY = targetY;
+      }
 
+      devices.forEach((device) => {
+        device.style.setProperty(
+          "--hero-tilt-x",
+          `${currentY.toFixed(3)}deg`
+        );
+
+        device.style.setProperty(
+          "--hero-tilt-y",
+          `${currentX.toFixed(3)}deg`
+        );
+      });
+
+      if (settled) {
+        isRunning = false;
+        return;
+      }
+
+      animationFrame = requestAnimationFrame(update);
+    };
+
+    const start = () => {
+      if (isRunning) return;
+
+      isRunning = true;
       animationFrame = requestAnimationFrame(update);
     };
 
@@ -53,11 +85,13 @@ export function Hero() {
 
       targetX = (x - 0.5) * 10;
       targetY = (y - 0.5) * -7;
+      start();
     };
 
     const handlePointerLeave = () => {
       targetX = 0;
       targetY = 0;
+      start();
     };
 
     const handleTouchStart = (event: TouchEvent) => {
@@ -72,6 +106,7 @@ export function Hero() {
 
       targetX = (x - 0.5) * 8;
       targetY = (y - 0.5) * -6;
+      start();
     };
 
     const handleTouchMove = (event: TouchEvent) => {
@@ -86,11 +121,13 @@ export function Hero() {
 
       targetX = (x - 0.5) * 8;
       targetY = (y - 0.5) * -6;
+      start();
     };
 
     const handleTouchEnd = () => {
       targetX = 0;
       targetY = 0;
+      start();
     };
 
     const finePointer = window.matchMedia(
@@ -112,8 +149,6 @@ export function Hero() {
       visual.addEventListener("touchend", handleTouchEnd);
       visual.addEventListener("touchcancel", handleTouchEnd);
     }
-
-    animationFrame = requestAnimationFrame(update);
 
     return () => {
       visual.removeEventListener("pointermove", handlePointerMove);
@@ -159,7 +194,7 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {hero.ctaLabel}
+                <span className="btn__label">{hero.ctaLabel}</span>
               </a>
             </div>
           </div>

@@ -47,7 +47,7 @@
 }
 
 /* Cuando la sección entra en viewport */
-.process.section-is-visible .process__list::after {
+.process[data-section-visible] .process__list::after {
   transform: scaleY(1);
 }
 
@@ -110,17 +110,6 @@
     transform 450ms var(--ease-out);
 }
 
-.process__step:hover .process__number {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-.process__step:hover .process__number::after {
-  opacity: 0.35;
-  transform: scale(1);
-}
-
 /* -------------------------------- */
 /* CONTENIDO                        */
 /* -------------------------------- */
@@ -128,10 +117,6 @@
 .process__copy {
   padding-top: 0.4rem;
   transition: transform 350ms var(--ease-out);
-}
-
-.process__step:hover .process__copy {
-  transform: translateY(-3px);
 }
 
 .process__step-title {
@@ -145,10 +130,6 @@
     transform 350ms var(--ease-out);
 }
 
-.process__step:hover .process__step-title {
-  color: var(--color-accent);
-}
-
 .process__step-text {
   font-size: 0.95rem;
   line-height: 1.55;
@@ -158,10 +139,6 @@
   transition:
     color 300ms ease,
     transform 350ms var(--ease-out);
-}
-
-.process__step:hover .process__step-text {
-  color: var(--color-ink);
 }
 
 /* -------------------------------- */
@@ -199,7 +176,7 @@
     transform-origin: left;
   }
 
-  .process.section-is-visible .process__list::after {
+  .process[data-section-visible] .process__list::after {
     transform: scaleX(1);
   }
 
@@ -248,15 +225,6 @@
   }
 }
 
-/* -------------------------------- */
-/* TABLET / MOBILE                  */
-/* -------------------------------- */
-
-@media (max-width: 899px) {
-  .process__step:hover .process__copy {
-    transform: translateY(-2px);
-  }
-}
 
 /* -------------------------------- */
 /* MOBILE                           */
@@ -309,5 +277,33 @@
   .process__step-text {
     font-size: 0.9rem;
     line-height: 1.6;
+  }
+}
+/* -------------------------------- */
+/* HOVER (solo con mouse)           */
+/* -------------------------------- */
+
+@media (hover: hover) and (pointer: fine) {
+  .process__step:hover .process__number {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .process__step:hover .process__number::after {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  .process__step:hover .process__copy {
+    transform: translateY(-3px);
+  }
+
+  .process__step:hover .process__step-title {
+    color: var(--color-accent);
+  }
+
+  .process__step:hover .process__step-text {
+    color: var(--color-ink);
   }
 }
